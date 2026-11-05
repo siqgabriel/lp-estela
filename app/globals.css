@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/*
+  Tokens de marca: #1f1539 (ink), #331e69 (violet), #ffffff (white).
+  Todo o resto é tinta/sombra derivada dessas três — ver CLAUDE.md.
+  "Bastidor" (escuro) é fixo: seções de dor/diagnóstico da copy.
+  "Palco" (claro) respeita o tema global claro/escuro do visitante.
+*/
+:root {
+  --ink: #1f1539;
+  --ink-soft: #5c4a93;
+  --violet: #331e69;
+  --violet-soft: #4a3a7a;
+  --white: #ffffff;
+
+  --bastidor-bg: #1f1539;
+  --bastidor-bg-deep: #140d24;
+  --bastidor-text: #f3effa;
+  --bastidor-text-soft: #b3a7cf;
+  --bastidor-line: #3a2f5c;
+
+  --palco-bg: #ffffff;
+  --palco-bg-warm: #f7f4fb;
+  --palco-text: #241a3d;
+  --palco-text-soft: #5b5272;
+  --palco-line: #e3ddee;
+
+  --focus-ring: #8a73d6;
+}
+
+:root[data-theme="dark"] {
+  --palco-bg: #15101f;
+  --palco-bg-warm: #1b1430;
+  --palco-text: #efe9fb;
+  --palco-text-soft: #b3a7cf;
+  --palco-line: #352a52;
+}
+
+@theme inline {
+  --font-display: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-ui: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-violet: var(--violet);
+  --color-violet-soft: var(--violet-soft);
+  --color-white: var(--white);
+
+  --color-bastidor-bg: var(--bastidor-bg);
+  --color-bastidor-bg-deep: var(--bastidor-bg-deep);
+  --color-bastidor-text: var(--bastidor-text);
+  --color-bastidor-text-soft: var(--bastidor-text-soft);
+  --color-bastidor-line: var(--bastidor-line);
+
+  --color-palco-bg: var(--palco-bg);
+  --color-palco-bg-warm: var(--palco-bg-warm);
+  --color-palco-text: var(--palco-text);
+  --color-palco-text-soft: var(--palco-text-soft);
+  --color-palco-line: var(--palco-line);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--palco-bg);
+  color: var(--palco-text);
+  font-family: var(--font-sans);
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+::selection {
+  background: var(--violet);
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
