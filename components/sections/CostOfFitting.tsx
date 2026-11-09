@@ -1,35 +1,25 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
+import { s3 } from "@/lib/content";
+import { photos } from "@/lib/photos";
+import { Photo } from "@/components/media/Photo";
+import { GUTTER, IMPACT, LEAD, Prose } from "@/components/system/type";
 
+/**
+ * Seção 3 — página cheia ink. A foto sangra até a borda esquerda e encosta no eixo;
+ * "PRA CABER." fica presa numa caixa branca do tamanho exato da palavra.
+ */
 export function CostOfFitting() {
   return (
-    <Panel mode="bastidor" className="border-t border-bastidor-line">
-      <div className="grid gap-10 sm:grid-cols-[1fr_1.1fr] sm:items-center">
-        <Reveal>
-          <h2 className="font-display text-4xl sm:text-5xl">O CUSTO DE SE MOLDAR PRA CABER.</h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="space-y-5 font-sans text-lg leading-relaxed text-bastidor-text-soft">
-            <p>
-              Tem gente com anos de teatro e audiovisual nas costas que, mesmo assim, sente que não
-              faz parte do meio de verdade.
-            </p>
-            <p>
-              Na tentativa de agradar quem contrata, vai moldando o próprio trabalho. Aceita rótulos
-              que não escolheu. Tenta virar &ldquo;o tipo&rdquo; que alguém está procurando naquele
-              momento.
-            </p>
-            <p>
-              E, sem perceber, isso deixa o trabalho parecido com o de qualquer outro nome na lista —
-              mais fácil de esquecer.
-            </p>
-            <p>
-              As escolhas de carreira acabam virando apostas no escuro — qual projeto topar, por que
-              topar, com quem topar. Decididas na pressa, sem critério nenhum por trás.
-            </p>
-          </div>
-        </Reveal>
+    <section data-section="3" className="relative grid bg-ink-band text-paper lg:grid-cols-12">
+      <div className="relative aspect-[4/3] lg:col-span-5 lg:aspect-auto">
+        <Photo photo={photos.ft6} fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover object-[50%_30%]" />
       </div>
-    </Panel>
+      <div className={`${GUTTER} py-16 lg:col-span-7 lg:py-[7vw] lg:pl-[4vw]`}>
+        <h2>
+          <span className={`${LEAD} text-lilac`}>{s3.lead}</span>
+          <span className={`${IMPACT} mt-3 inline-block bg-paper px-[0.12em] pt-[0.06em] text-paper-ink`}>{s3.impact}</span>
+        </h2>
+        <Prose paragraphs={s3.paragraphs} className="mt-10 max-w-[56ch]" />
+      </div>
+    </section>
   );
 }

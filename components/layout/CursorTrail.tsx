@@ -41,7 +41,7 @@ export function CursorTrail() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const fine = window.matchMedia("(pointer: fine)");
+    const fine = window.matchMedia("(any-pointer: fine)");
     const evaluate = () => setEnabled(fine.matches && !prefersReducedMotion());
     evaluate();
     fine.addEventListener("change", evaluate);

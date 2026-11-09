@@ -1,34 +1,23 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
+import { s9 } from "@/lib/content";
+import { photos } from "@/lib/photos";
+import { PhotoWord } from "@/components/system/PhotoWord";
+import { GUTTER, IMPACT, LEAD, MONUMENTAL, Prose } from "@/components/system/type";
 
+/**
+ * Seção 9 — foto em letra nº 2 (PORTAS, uma única foto). Papel branco nos dois temas, sem pin.
+ * Título empilhado à esquerda; texto à direita, começando na altura da palavra.
+ */
 export function ManyDoors() {
   return (
-    <Panel mode="palco-warm" className="border-t border-palco-line">
-      <div className="mx-auto max-w-2xl text-center">
-        <Reveal>
-          <h2 className="font-display text-4xl text-strong sm:text-5xl">VÁRIAS PORTAS, NÃO UMA SÓ.</h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="mt-8 space-y-5 font-sans text-lg leading-relaxed text-palco-text-soft">
-            <p>
-              Repara: dentro do próprio método já existem caminhos diferentes — mercado tradicional
-              de elenco, teatro musical, projetos culturais, redes sociais como uma emissora de
-              valor.
-            </p>
-            <p>
-              Cada módulo que você atravessa não é só conhecimento a mais. É mais um caminho pelo
-              qual sua carreira pode acontecer.
-            </p>
-            <p>Quando você depende de uma porta só, cada &ldquo;não&rdquo; tem o peso da carreira inteira.</p>
-            <p>Quando você constrói várias, nenhum &ldquo;não&rdquo; isolado consegue te parar.</p>
-          </div>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <p className="mt-6 font-sans text-xl font-semibold text-strong">
-            É isso que os módulos multiplicam, um a um.
-          </p>
-        </Reveal>
+    <section data-section="9" className="bg-paper text-paper-ink">
+      <div className={`${GUTTER} grid gap-12 py-20 lg:grid-cols-12 lg:gap-[3vw] lg:py-[8vw]`}>
+        <h2 className="lg:col-span-6">
+          <span className={`${LEAD} text-paper-accent`}>{s9.lead}</span>
+          <PhotoWord word={s9.word} photo={photos.ft1} position="50% 40%" className={`${MONUMENTAL} text-[30vw] lg:text-[14vw]`} />
+          <span className={IMPACT}>{s9.impact}</span>
+        </h2>
+        <Prose paragraphs={s9.paragraphs} className="max-w-[56ch] lg:col-span-5 lg:col-start-8 lg:self-end" />
       </div>
-    </Panel>
+    </section>
   );
 }

@@ -15,6 +15,7 @@ import { AboutEstela } from "@/components/sections/AboutEstela";
 import { Offer } from "@/components/sections/Offer";
 import { Guarantee } from "@/components/sections/Guarantee";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Questions } from "@/components/sections/Questions";
 import { FAQ } from "@/components/sections/FAQ";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { siteConfig } from "@/lib/site-config";
@@ -62,6 +63,7 @@ export default function Home() {
       <Offer />
       <Guarantee />
       <FinalCTA />
+      <Questions />
       <FAQ />
       <SiteFooter />
     </>

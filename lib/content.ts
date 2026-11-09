@@ -138,13 +138,13 @@ export const testimonialVideoNames = [
 ] as const;
 
 export const audienceQualifiers = [
-  "sentem que o preparo não está virando visibilidade na proporção que gostariam",
-  "estão cansados de moldar o próprio trabalho pra caber em rótulos que não escolheram",
-  "querem tomar decisões de carreira com critério, não no escuro",
-  "precisam organizar materiais, posicionamento e comunicação com o mercado",
-  "querem entender de verdade como diretores de elenco e agências decidem",
-  "enxergam teatro musical e projetos culturais como frentes reais, não só um plano B",
-  "entendem que viver da profissão também é saber comandar a própria carreira",
+  "sentem que o preparo não está virando visibilidade na proporção que gostariam;",
+  "estão cansados de moldar o próprio trabalho pra caber em rótulos que não escolheram;",
+  "querem tomar decisões de carreira com critério, não no escuro;",
+  "precisam organizar materiais, posicionamento e comunicação com o mercado;",
+  "querem entender de verdade como diretores de elenco e agências decidem;",
+  "enxergam teatro musical e projetos culturais como frentes reais, não só um plano B;",
+  "entendem que viver da profissão também é saber comandar a própria carreira.",
 ] as const;
 
 export const deliverables = [
@@ -246,3 +246,153 @@ export const ctas = {
   s15: "QUERO ENTRAR NO GESTÃO DE CARREIRA",
   s17: "QUERO COMEÇAR AGORA",
 } as const;
+
+/* Seções 2–19 (reformulação). Texto literal do PDF. */
+
+export const s2 = {
+  lead: "VOCÊ SABE ATUAR.",
+  impact: "MAS O MERCADO SABE QUEM VOCÊ É?",
+  paragraphs: [
+    "A maioria da classe foi preparada pra entrar em cena. Pouquíssimos foram preparados pra tudo que acontece fora dela.",
+    "Como se apresentar. Como ser lembrado. Como fazer um diretor de elenco entender, em poucos segundos de material, o que você levou anos pra construir.",
+    "Antes de tudo, é preciso reconhecer o próprio valor. Cada ator carrega uma combinação única de perfil, singularidade e linguagem — um espaço legítimo que só ele pode ocupar no mercado. Essa singularidade é o primeiro ativo de uma carreira.",
+    "Com essa clareza, vem a parte que sustenta tudo: planejamento, posicionamento, autonomia. Uma autonomia que nasce quando você constrói o próprio mercado — desenvolvendo projetos, reconhecendo seu público, ampliando oportunidades, ficando visível numa continuidade que cresce e que não depende de um único momento.",
+    "Essa parte da profissão também se aprende. Só nunca esteve no caminho que você já percorreu.",
+    "O Gestão de Carreira foi criado exatamente pra preencher essa lacuna.",
+  ],
+} as const;
+
+export const s3 = {
+  lead: "O CUSTO DE SE MOLDAR",
+  impact: "PRA CABER.",
+  paragraphs: [
+    "Tem gente com anos de teatro e audiovisual nas costas que, mesmo assim, sente que não faz parte do meio de verdade.",
+    "Na tentativa de agradar quem contrata, vai moldando o próprio trabalho. Aceita rótulos que não escolheu. Tenta virar “o tipo” que alguém está procurando naquele momento.",
+    "E, sem perceber, isso deixa o trabalho parecido com o de qualquer outro nome na lista — mais fácil de esquecer.",
+    "As escolhas de carreira acabam virando apostas no escuro — qual projeto topar, por que topar, com quem topar. Decididas na pressa, sem critério nenhum por trás.",
+  ],
+} as const;
+
+export const s5 = {
+  lead: "VIVER DE ATUAÇÃO TAMBÉM É",
+  impact: "VIVER DE INCERTEZA.",
+  paragraphs: [
+    "Viver de interpretação, no Brasil, costuma ser viver de intervalo: um contrato aqui, um silêncio ali, a incerteza de quando vem o próximo.",
+    "Isso pesa. E pesa mais ainda quando a carreira inteira depende de alguém, em algum lugar, lembrar do seu nome na hora certa.",
+    "Não existe fórmula que resolva isso da noite pro dia — desconfie de quem promete.",
+    "A instabilidade faz parte da carreira de um ator. Mas isso não significa ficar à espera: quanto mais presente, visível e lembrado você se mantém no mercado, maiores são as possibilidades de ampliar e diversificar o trabalho que chega até você.",
+  ],
+  pull: "E isso, sim, dá pra construir.",
+  closing: "O método foca no que está sob seu controle: mais frentes de trabalho, pra depender menos de uma única fonte.",
+} as const;
+
+export const s6 = {
+  word: "COMANDAR",
+  lead: "A CARREIRA OU SÓ REAGIR A ELA.",
+  paragraphs: [
+    "Existe uma diferença entre esperar ser escolhido e decidir, você mesmo, o próximo passo.",
+    "Quando um ator assume a posição de quem conduz — e não só de quem reage — ele para de depender inteiramente da validação de quem está do outro lado da mesa. E começa a criar um percurso para o próprio mercado.",
+    "Isso muda o tipo de trabalho que aparece.",
+    "E muda também o espaço que a sua voz ocupa nele.",
+    "É exatamente essa mudança de postura — de reativa pra ativa — que o curso treina, passo a passo.",
+  ],
+} as const;
+
+export const s8 = {
+  lead: "O CAMINHO DE QUEM DEIXA DE ESPERAR",
+  impact: "E COMEÇA A CONDUZIR.",
+  intro: "O Gestão de Carreira reúne 12 módulos — não como uma lista de aulas soltas, mas como um percurso.",
+} as const;
+
+export const s9 = {
+  lead: "VÁRIAS",
+  word: "PORTAS,",
+  impact: "NÃO UMA SÓ.",
+  paragraphs: [
+    "Repara: dentro do próprio método já existem caminhos diferentes — mercado tradicional de elenco, teatro musical, projetos culturais, redes sociais como uma emissora de valor.",
+    "Cada módulo que você atravessa não é só conhecimento a mais. É mais um caminho pelo qual sua carreira pode acontecer.",
+    "Quando você depende de uma porta só, cada “não” tem o peso da carreira inteira.",
+    "Quando você constrói várias, nenhum “não” isolado consegue te parar.",
+    "É isso que os módulos multiplicam, um a um.",
+  ],
+} as const;
+
+export const s10 = {
+  lead: "CRIATIVIDADE TAMBÉM É",
+  impact: "ESTRATÉGIA.",
+  opening: ["Você é o artista que faz acontecer?", "O mercado não está devendo oportunidades pra você.", "O mercado está esperando projetos."],
+  ideas: "Todo artista acumula ideias. Mas poucos sabem transformar uma ideia em projeto viável — sem esperar aprovação, edital ou lei.",
+  formatsLead: "Um bom projeto pode virar",
+  /** "espetáculo. Curta. Longa. Série. Exposição. Livro. Podcast. Festival. Residência artística. Circulação." */
+  formats: ["espetáculo.", "Curta.", "Longa.", "Série.", "Exposição.", "Livro.", "Podcast.", "Festival.", "Residência artística.", "Circulação."],
+  paragraphs: [
+    "Será que alguém precisa esperar a aprovação de um edital pra começar? Ou já pode criar motivos pro mercado olhar na sua direção?",
+    "Enquanto uma aprovação não chega, também dá pra criar as próprias oportunidades — movimentar ideias, formar parcerias, fazer o mercado reparar no seu trabalho.",
+    "Muitos artistas não esperam mais testes, editais ou convites. Eles escrevem, produzem, filmam, dirigem, se associam, inventam caminhos — e fazem projetos acontecerem.",
+    "É esse tipo de movimento que o módulo de Projetos Culturais ajuda você a criar.",
+  ],
+} as const;
+
+export const s11 = { lead: "QUEM JÁ PASSOU", impact: "POR AQUI." } as const;
+
+export const s12 = {
+  impact: "PRA QUEM É.",
+  intro: "Para atores e atrizes, maiores de 18 anos, estudantes ou profissionais de artes dramáticas com experiência em teatro e/ou audiovisual, que:",
+  closing: "Se isso te descreve, o Método Gestão foi construído pra você.",
+} as const;
+
+export const s13 = {
+  lead: "TUDO QUE VAI ESTAR",
+  impact: "NAS SUAS MÃOS.",
+  bonusIntro: "E ainda tem 2 bônus:",
+} as const;
+
+export const s14 = {
+  lead: "QUEM É",
+  name: ["ESTELA", "ALBANI"],
+  paragraphs: [
+    "Há 25 anos, Estela Albani transita entre três lugares diferentes da profissão: direção de elenco, produção cultural e mentoria de carreira artística.",
+    "Em 2002, criou o primeiro curso de orientação de imagem e carreira para atores no Rio de Janeiro — numa época em que ninguém tratava isso como parte da formação de um artista.",
+    "Em 2012, desenvolveu uma metodologia própria para ajudar atores a reconhecerem sua linha de atuação mais autêntica.",
+    "Ao longo desse caminho, teve acesso não só às dúvidas dos atores sobre autonomia e trajetória, mas também às resistências mais difíceis de nomear — muitas vezes enraizadas em como cada um foi ensinado a enxergar o próprio valor.",
+  ],
+  closing: "É esse cruzamento entre técnica de mercado e compreensão humana que sustenta o Gestão de Carreira.",
+} as const;
+
+export const s15 = {
+  lead: "GARANTA SEU ACESSO.",
+  product: "GESTÃO DE CARREIRA",
+  price: "R$ 442",
+  cashLabel: "à vista",
+  installments: "(ou R$ 497 em 12x)",
+  included: "Os 12 módulos, mais de 150 aulas, 1 ano de acesso, suporte e os 2 bônus que você acabou de conhecer — tudo incluso.",
+  cta: "QUERO ENTRAR NO GESTÃO DE CARREIRA",
+} as const;
+
+export const s16 = {
+  lead: "7 DIAS DE GARANTIA.",
+  impact: "100% DE REEMBOLSO.",
+  paragraphs: [
+    "Faz sentido restar uma dúvida antes de decidir — principalmente quando a decisão é sobre a própria carreira.",
+    "Por isso, você tem 7 dias de garantia incondicional. Se, nesse prazo, sentir que não é pra você, é só avisar. Devolvemos 100% do valor, sem perguntas.",
+  ],
+  closing: "O risco é nosso.",
+} as const;
+
+export const s17 = {
+  lead: "O PRÓXIMO PASSO É",
+  word: "SEU.",
+  paragraphs: [
+    "Dá pra continuar esperando convites.",
+    "Ou dá pra começar, agora, a construir o que faz esses convites te encontrarem.",
+  ],
+  cta: "QUERO COMEÇAR AGORA",
+} as const;
+
+export const s18 = {
+  impact: "ALGUMA DÚVIDA?",
+  paragraphs: ["Estamos prontos para responder qualquer pergunta.", "É só chamar a gente no botão do WhatsApp aqui do lado."],
+} as const;
+
+/** "FAQ - PERGUNTAS FREQUENTES": a quebra de linha substitui o hífen separador. */
+export const s19 = { lead: "FAQ", impact: "PERGUNTAS FREQUENTES" } as const;

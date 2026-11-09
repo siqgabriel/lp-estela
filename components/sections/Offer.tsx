@@ -1,40 +1,39 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
-import { pricing } from "@/lib/content";
+import { s15 } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
+import { Cta, GUTTER, IMPACT, LEAD, MONUMENTAL } from "@/components/system/type";
 
+/**
+ * Seção 15 — eixo vertical (58%). Campo: nome do produto e o preço monumental, inteiro do
+ * lado do campo (o eixo nunca corta dígitos). Bloco: parcelamento, o que está incluso e o CTA.
+ * Sem caixa de oferta. Celular: página cheia branca, CTA em ink.
+ */
 export function Offer() {
+  const checkout = siteConfig.checkoutUrl;
   return (
-    <Panel mode="palco" id="oferta" className="border-t border-palco-line">
-      <Reveal>
-        <p className="eyebrow text-accent">Oferta</p>
-        <h2 className="mt-3 font-display text-4xl text-strong sm:text-5xl">GARANTA SEU ACESSO.</h2>
-      </Reveal>
+    <section id="oferta" data-section="15" className="relative isolate grid bg-field text-strong lg:grid-cols-[58%_1fr]">
+      <div className={`${GUTTER} pt-20 pb-10 lg:py-[7vw]`}>
+        <h2>
+          <span className={`${LEAD} text-accent`}>{s15.lead}</span>
+          <span className={`${IMPACT} mt-1`}>{s15.product}</span>
+        </h2>
+        <p className="mt-8 flex flex-wrap items-baseline gap-x-5">
+          <span className={`${MONUMENTAL} text-[30vw] lg:text-[14vw]`}>{s15.price}</span>
+          <span className={`${LEAD} text-accent`}>{s15.cashLabel}</span>
+        </p>
+      </div>
 
-      <Reveal delay={0.1}>
-        <div className="mt-10 max-w-xl rounded-sm border border-palco-line bg-palco-bg-warm p-8 sm:p-10">
-          <p className="font-display text-2xl tracking-wide text-strong">GESTÃO DE CARREIRA</p>
-          <p className="mt-4 font-display text-5xl text-strong sm:text-6xl">{pricing.cash}</p>
-          <p className="mt-1 font-sans text-lg text-palco-text-soft">{pricing.installments}</p>
-          <p className="mt-6 font-sans text-base leading-relaxed text-palco-text-soft">
-            Os 12 módulos, mais de 150 aulas, 1 ano de acesso, suporte e os 2 bônus que você acabou
-            de conhecer — tudo incluso.
+      <div className={`${GUTTER} pb-20 lg:flex lg:flex-col lg:justify-end lg:bg-block lg:py-[7vw] lg:text-on-block`}>
+        <p className={`${LEAD} lg:text-[clamp(30px,2.6vw,42px)]`}>{s15.installments}</p>
+        <p className="mt-6 max-w-[44ch] font-sans text-[17px] leading-relaxed font-bold lg:text-[18px]">{s15.included}</p>
+        <Cta href={checkout ?? "#oferta"} tone="field" className="mt-8 w-full lg:bg-field lg:text-strong">
+          {s15.cta}
+        </Cta>
+        {!checkout && (
+          <p className="mt-3 font-ui text-xs" data-pending="checkout">
+            [Pendente: link de checkout — lib/site-config.ts]
           </p>
-          <a
-            href={siteConfig.checkoutUrl ?? "#oferta"}
-            data-cta-inline
-            aria-describedby={siteConfig.checkoutUrl ? undefined : "checkout-pendente"}
-            className="mt-8 inline-block w-full rounded-full btn-on-field px-8 py-4 text-center font-ui text-sm font-semibold uppercase tracking-wider transition-transform hover:scale-[1.01]"
-          >
-            Quero entrar no Gestão de Carreira
-          </a>
-          {!siteConfig.checkoutUrl && (
-            <p id="checkout-pendente" className="mt-3 font-ui text-xs text-strong" data-pending="checkout">
-              [Pendente: link de checkout — lib/site-config.ts]
-            </p>
-          )}
-        </div>
-      </Reveal>
-    </Panel>
+        )}
+      </div>
+    </section>
   );
 }

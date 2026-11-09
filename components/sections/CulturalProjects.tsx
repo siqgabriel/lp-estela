@@ -1,57 +1,43 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
-import { culturalFormats } from "@/lib/content";
+import { s10 } from "@/lib/content";
+import { photos } from "@/lib/photos";
+import { Photo } from "@/components/media/Photo";
+import { GUTTER, Prose, Title } from "@/components/system/type";
 
+/**
+ * Seção 10 — eixo vertical em 38% com o bloco à ESQUERDA (inverte a direção do eixo).
+ * Bloco: título e as três frases de abertura. Campo: foto encostada no eixo, o resto
+ * do texto e os formatos de projeto em lista tipográfica.
+ * Celular: eixo horizontal (bloco em cima, campo embaixo).
+ */
 export function CulturalProjects() {
   return (
-    <Panel mode="palco" className="border-t border-palco-line">
-      <div className="grid gap-10 sm:grid-cols-[1.1fr_1fr] sm:items-start">
-        <Reveal>
-          <h2 className="font-display text-4xl text-strong sm:text-5xl">
-            CRIATIVIDADE TAMBÉM É ESTRATÉGIA.
-          </h2>
-          <div className="mt-6 space-y-5 font-sans text-lg leading-relaxed text-palco-text-soft">
-            <p>Você é o artista que faz acontecer?</p>
-            <p>O mercado não está devendo oportunidades pra você.</p>
-            <p>O mercado está esperando projetos.</p>
-            <p>
-              Todo artista acumula ideias. Mas poucos sabem transformar uma ideia em projeto viável
-              — sem esperar aprovação, edital ou lei.
+    <section data-section="10" className="relative isolate grid bg-field text-strong lg:grid-cols-[38%_1fr]">
+      <div className={`${GUTTER} bg-block py-16 text-on-block lg:py-[7vw] lg:pr-[3vw]`}>
+        <Title lead={s10.lead} impact={s10.impact} leadClass="text-accent-on-block" />
+        <div className="mt-10 space-y-3 font-sans text-xl leading-snug font-medium lg:text-[22px]">
+          {s10.opening.map((line, i) => (
+            <p key={line} className={i === s10.opening.length - 1 ? "font-bold" : ""}>
+              {line}
             </p>
-            <p>
-              Será que alguém precisa esperar a aprovação de um edital pra começar? Ou já pode criar
-              motivos pro mercado olhar na sua direção?
-            </p>
-            <p>
-              Enquanto uma aprovação não chega, também dá pra criar as próprias oportunidades —
-              movimentar ideias, formar parcerias, fazer o mercado reparar no seu trabalho.
-            </p>
-            <p>
-              Muitos artistas não esperam mais testes, editais ou convites. Eles escrevem, produzem,
-              filmam, dirigem, se associam, inventam caminhos — e fazem projetos acontecerem.
-            </p>
-            <p className="font-semibold text-strong">
-              É esse tipo de movimento que o módulo de Projetos Culturais ajuda você a criar.
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.15}>
-          <p className="font-ui text-xs font-semibold uppercase tracking-widest text-accent">
-            Um bom projeto pode virar
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {culturalFormats.map((format) => (
-              <span
-                key={format}
-                className="rounded-full border border-palco-line px-4 py-1.5 font-sans text-sm text-strong"
-              >
-                {format}
-              </span>
-            ))}
-          </div>
-        </Reveal>
+          ))}
+        </div>
       </div>
-    </Panel>
+
+      <div className="pb-16 lg:pb-[7vw]">
+        <div className="relative aspect-[16/9] lg:w-[78%]">
+          <Photo photo={photos.ft4} fill sizes="(min-width: 1024px) 48vw, 100vw" className="object-cover" />
+        </div>
+        <div className={`${GUTTER} mt-10 max-w-[64ch] lg:mt-[4vw] lg:pl-[4vw]`}>
+          <p className="font-sans text-[17px] leading-relaxed lg:text-[18px]">{s10.ideas}</p>
+          <p className="mt-8 font-sans text-[17px] leading-relaxed lg:text-[18px]">{s10.formatsLead}</p>
+          <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 font-display text-[clamp(30px,3vw,46px)] leading-[1.05] font-bold uppercase">
+            {s10.formats.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
+          <Prose paragraphs={s10.paragraphs} className="mt-10" />
+        </div>
+      </div>
+    </section>
   );
 }

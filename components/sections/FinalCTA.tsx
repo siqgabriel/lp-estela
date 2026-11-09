@@ -1,53 +1,27 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
-import { whatsappLink } from "@/lib/site-config";
+import { s17 } from "@/lib/content";
+import { photos } from "@/lib/photos";
+import { PhotoWord } from "@/components/system/PhotoWord";
+import { Cta, GUTTER, LEAD, MONUMENTAL, Prose } from "@/components/system/type";
 
+/**
+ * Seção 17 — foto em letra nº 3 (SEU., ft2). Eixo horizontal: papel branco com a palavra
+ * (igual nos dois temas) e a base encostando na faixa ink com o texto e o CTA.
+ */
 export function FinalCTA() {
   return (
-    <Panel mode="bastidor" className="border-t border-bastidor-line">
-      <div className="mx-auto max-w-2xl text-center">
-        <Reveal>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl">O PRÓXIMO PASSO É SEU.</h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="mt-6 space-y-3 font-sans text-lg leading-relaxed text-bastidor-text-soft">
-            <p>Dá pra continuar esperando convites.</p>
-            <p>Ou dá pra começar, agora, a construir o que faz esses convites te encontrarem.</p>
-          </div>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <a
-            href="#oferta"
-            data-cta-inline
-            className="mt-9 inline-block rounded-full btn-on-dark px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider  transition-transform hover:scale-[1.02]"
-          >
-            Quero começar agora
-          </a>
-        </Reveal>
-
-        <Reveal delay={0.3}>
-          <div id="duvidas" className="mt-16 border-t border-bastidor-line pt-10">
-            <h3 className="font-sans text-lg font-semibold">Alguma dúvida?</h3>
-            <p className="mt-2 font-sans text-base text-bastidor-text-soft">
-              Estamos prontos para responder qualquer pergunta.
-            </p>
-            {whatsappLink() ? (
-              <a
-                href={whatsappLink()!}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-wider text-bastidor-text underline underline-offset-4"
-              >
-                Chamar no WhatsApp
-              </a>
-            ) : (
-              <p className="mt-4 font-ui text-sm text-bastidor-text" data-pending="whatsapp">
-                [Pendente: número do WhatsApp — lib/site-config.ts]
-              </p>
-            )}
-          </div>
-        </Reveal>
+    <section data-section="17" className="bg-paper text-paper-ink">
+      <h2 className={`${GUTTER} pt-20 lg:flex lg:items-end lg:gap-[2vw] lg:pt-[7vw]`}>
+        <span className={`${LEAD} text-paper-accent lg:pb-[1.8vw]`}>{s17.lead}</span>
+        <PhotoWord word={s17.word} photo={photos.ft2} position="50% 55%" className={`${MONUMENTAL} text-[38vw] lg:text-[14vw]`} />
+      </h2>
+      <div className={`${GUTTER} grid gap-8 bg-ink-band py-12 text-paper lg:grid-cols-12 lg:items-center lg:gap-[3vw] lg:py-[4vw]`}>
+        <Prose paragraphs={s17.paragraphs} className="lg:col-span-6" />
+        <div className="lg:col-span-5 lg:col-start-8">
+          <Cta href="#oferta" tone="dark" className="w-full">
+            {s17.cta}
+          </Cta>
+        </div>
       </div>
-    </Panel>
+    </section>
   );
 }

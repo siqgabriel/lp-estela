@@ -1,33 +1,32 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
-import { faqItems } from "@/lib/content";
+import { faqItems, s19 } from "@/lib/content";
+import { GUTTER, Title } from "@/components/system/type";
 
 /**
- * FAQ com details/summary nativos: todas as respostas ficam no HTML (busca,
- * leitores de tela, Ctrl+F) e funcionam sem JS. O SmoothScrollProvider
- * atualiza o ScrollTrigger quando um item abre ou fecha.
+ * Seção 19 — página cheia branca. Título fixo à esquerda no desktop; perguntas com
+ * details/summary nativos (todas as respostas no HTML, funciona sem JS).
  */
 export function FAQ() {
   return (
-    <Panel mode="palco" className="border-t border-palco-line">
-      <Reveal>
-        <p className="eyebrow text-accent">FAQ</p>
-        <h2 className="mt-3 font-display text-4xl text-strong sm:text-5xl">PERGUNTAS FREQUENTES</h2>
-      </Reveal>
-
-      <Reveal delay={0.08}>
-        <div className="faq mt-10 divide-y divide-palco-line border-y border-palco-line">
+    <section data-section="19" className="bg-field text-strong">
+      <div className={`${GUTTER} grid gap-10 py-20 lg:grid-cols-12 lg:gap-[3vw] lg:py-[8vw]`}>
+        <Title
+          lead={s19.lead}
+          impact={s19.impact}
+          className="lg:sticky lg:top-[calc(var(--header-h)+3vw)] lg:col-span-4 lg:self-start"
+          leadClass="text-accent"
+        />
+        <div className="faq border-b border-rule lg:col-span-7 lg:col-start-6">
           {faqItems.map((item, index) => (
-            <details key={item.q} open={index === 0}>
-              <summary className="flex w-full items-center justify-between gap-6 py-5 text-left font-ui text-base font-medium text-strong">
+            <details key={item.q} open={index === 0} className="border-t border-rule">
+              <summary className="flex w-full items-center justify-between gap-6 py-5 text-left font-sans text-lg font-semibold lg:text-[20px]">
                 {item.q}
-                <span aria-hidden="true" className="faq-icon text-xl text-accent" />
+                <span aria-hidden="true" className="faq-icon font-display text-3xl leading-none text-accent" />
               </summary>
-              <p className="pb-5 font-sans text-base leading-relaxed text-palco-text-soft">{item.a}</p>
+              <p className="max-w-[60ch] pb-6 font-sans text-[17px] leading-relaxed lg:text-[18px]">{item.a}</p>
             </details>
           ))}
         </div>
-      </Reveal>
-    </Panel>
+      </div>
+    </section>
   );
 }

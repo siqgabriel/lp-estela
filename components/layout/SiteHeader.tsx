@@ -17,7 +17,7 @@ export function SiteHeader() {
             alt="Gestão de Carreira"
             width={866}
             height={400}
-            className="h-11 w-auto"
+            className="h-auto w-[132px]"
             priority
           />
         </a>

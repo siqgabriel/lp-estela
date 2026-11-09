@@ -1,55 +1,72 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
+import fs from "node:fs";
+import path from "node:path";
+import Image from "next/image";
+import { s14 } from "@/lib/content";
+import { PhotoPlaceholder, photoToneClass } from "@/components/media/Photo";
+import { estelaPhotos } from "@/lib/photos";
+import { GUTTER, IMPACT, LEAD, NUMERAL } from "@/components/system/type";
 
-const timeline = [
-  {
-    year: "2002",
-    text: "Criou o primeiro curso de orientação de imagem e carreira para atores no Rio de Janeiro — numa época em que ninguém tratava isso como parte da formação de um artista.",
-  },
-  {
-    year: "2012",
-    text: "Desenvolveu uma metodologia própria para ajudar atores a reconhecerem sua linha de atuação mais autêntica.",
-  },
-  {
-    year: "Hoje",
-    text: "Há 25 anos transita entre três lugares da profissão: direção de elenco, produção cultural e mentoria de carreira artística.",
-  },
-];
+/**
+ * Foto da Estela: arquivo local em public/img/photo/estela/ (fora do git até a aprovação dela).
+ * Enquanto não aprovada, só aparece onde o arquivo existe localmente; no deploy vira placeholder.
+ */
+const estela = estelaPhotos.sentada;
+const estelaAvailable = fs.existsSync(path.join(process.cwd(), "public", estela.src));
 
+/**
+ * Seção 14 — eixo horizontal: ink em cima, faixa branca na base. Estela recortada
+ * encosta na borda direita e atravessa a faixa, como nos fechamentos dos carrosséis.
+ * Os anos (2002, 2012) aparecem como numerais ao lado dos parágrafos (decorativos; o texto
+ * do PDF segue integral).
+ */
 export function AboutEstela() {
   return (
-    <Panel mode="bastidor" className="border-t border-bastidor-line">
-      <div className="grid gap-12 sm:grid-cols-[0.8fr_1.2fr]">
-        <Reveal>
-          <p className="eyebrow text-bastidor-text-soft">Quem é</p>
-          <h2 className="mt-3 font-display text-4xl sm:text-5xl">ESTELA ALBANI</h2>
-          <div className="mt-8 flex aspect-[3/4] max-w-xs items-center justify-center border border-bastidor-line bg-black/20 font-ui text-xs uppercase tracking-widest text-bastidor-text-soft">
-            [ foto em alta resolução — pendência 10.4 ]
-          </div>
-        </Reveal>
+    <section data-section="14" className="relative isolate flex flex-col overflow-hidden bg-ink-band text-paper lg:block">
+      <div className={`${GUTTER} relative z-10 order-1 pt-20 pb-10 lg:w-[62%] lg:pt-[7vw] lg:pb-[4vw]`}>
+        <h2>
+          <span className={`${LEAD} text-lilac`}>{s14.lead}</span>
+          <span className={IMPACT}>
+            {s14.name[0]}
+            <br />
+            {s14.name[1]}
+          </span>
+        </h2>
 
-        <Reveal delay={0.1}>
-          <ol className="space-y-8">
-            {timeline.map((item) => (
-              <li key={item.year} className="border-t border-bastidor-line pt-5">
-                <span className="font-display text-3xl text-white/90">{item.year}</span>
-                <p className="mt-2 max-w-xl font-sans text-base leading-relaxed text-bastidor-text-soft">
-                  {item.text}
-                </p>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-8 max-w-xl font-sans text-lg leading-relaxed text-bastidor-text-soft">
-            Ao longo desse caminho, teve acesso não só às dúvidas dos atores sobre autonomia e
-            trajetória, mas também às resistências mais difíceis de nomear — muitas vezes
-            enraizadas em como cada um foi ensinado a enxergar o próprio valor.
-          </p>
-          <p className="mt-4 max-w-xl font-sans text-lg font-semibold text-bastidor-text">
-            É esse cruzamento entre técnica de mercado e compreensão humana que sustenta o Gestão de
-            Carreira.
-          </p>
-        </Reveal>
+        <div className="mt-10 space-y-5 font-sans text-[17px] leading-relaxed lg:text-[18px]">
+          {s14.paragraphs.map((p) => {
+            const year = p.match(/^Em (\d{4})/)?.[1];
+            return (
+              <div key={p} className="lg:grid lg:grid-cols-[6.4vw_1fr] lg:gap-x-4">
+                <span aria-hidden="true" className={`${NUMERAL} hidden text-[clamp(30px,2.8vw,44px)] text-numeral-dark lg:block`}>
+                  {year ?? ""}
+                </span>
+                <p className="max-w-[56ch]">{p}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </Panel>
+
+      <div className="relative z-10 order-3 bg-paper text-paper-ink">
+        <p className={`${GUTTER} py-10 font-sans text-xl leading-snug font-bold lg:w-[62%] lg:py-[3vw] lg:text-[22px]`}>
+          {s14.closing}
+        </p>
+      </div>
+
+      <div className="relative z-20 order-2 mx-auto w-[78%] max-w-[420px] lg:absolute lg:right-[3vw] lg:bottom-0 lg:z-20 lg:mt-0 lg:w-[30vw] lg:max-w-none">
+        {estelaAvailable ? (
+          <Image
+            src={estela.src}
+            alt={estela.alt}
+            width={estela.width}
+            height={estela.height}
+            sizes="(min-width: 1024px) 30vw, 78vw"
+            className={`h-auto w-full ${photoToneClass(estela)}`}
+          />
+        ) : (
+          <PhotoPlaceholder label="Foto da Estela aguardando aprovação" className="aspect-[1100/1888] w-full" />
+        )}
+      </div>
+    </section>
   );
 }

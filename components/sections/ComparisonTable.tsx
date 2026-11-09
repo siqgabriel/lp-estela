@@ -17,8 +17,8 @@ export function ComparisonTable() {
     >
       <div aria-hidden="true" className="comparison-block absolute inset-y-0 right-0 -z-10 hidden bg-block lg:block" />
 
-      <div className="comparison-pin lg:flex lg:min-h-[calc(100svh-var(--header-h))] lg:flex-col lg:justify-center lg:py-[2.5vw]">
-        <h2 className="split-x-lg px-5 pt-16 pb-8 font-display text-[15vw] leading-[0.9] font-bold uppercase [--split-a:var(--type-strong)] [--split-b:var(--type-on-block)] sm:px-8 lg:px-0 lg:pt-0 lg:pb-[2vw] lg:text-center lg:text-[7vw]">
+      <div className="comparison-pin lg:pt-[3vw] lg:pb-[3.5vw]">
+        <h2 className="split-x-lg px-5 pt-16 pb-8 font-display text-[15vw] leading-[0.9] font-bold uppercase [--split-a:var(--type-strong)] [--split-b:var(--type-on-block)] sm:px-8 lg:px-0 lg:pt-0 lg:pb-[2vw] lg:text-center lg:text-[6vw]">
           {comparison.title}
         </h2>
 
@@ -39,20 +39,20 @@ export function ComparisonTable() {
           <tbody>
             {comparisonRows.map((row) => (
               <tr key={row.reacting} className="comparison-row">
-                <td className="cmp-a text-lg leading-snug lg:text-[1.2vw]">{row.reacting}</td>
-                <td className="cmp-b text-lg leading-snug font-medium lg:text-[1.2vw]">{row.deciding}</td>
+                <td className="cmp-a text-[17px] leading-snug lg:text-[18px]">{row.reacting}</td>
+                <td className="cmp-b text-[17px] leading-snug font-medium lg:text-[18px]">{row.deciding}</td>
               </tr>
             ))}
           </tbody>
         </table>
 
         <div className="comparison-closing grid lg:grid-cols-2 lg:pt-[2vw]">
-          <p className="px-5 py-8 font-sans text-lg leading-relaxed sm:px-8 lg:py-0 lg:pr-[6vw] lg:text-right lg:text-[1.25vw]">
+          <p className="px-5 py-8 font-sans text-[17px] leading-relaxed sm:px-8 lg:py-0 lg:pr-[6vw] lg:text-right lg:text-[18px]">
             {comparison.closing[0]}
             <br />
             {comparison.closing[1]}
           </p>
-          <p className="comparison-impact bg-block px-5 py-8 font-display text-[11vw] leading-[0.92] font-bold text-on-block uppercase sm:px-8 lg:bg-transparent lg:py-0 lg:pl-[6vw] lg:text-[3.4vw]">
+          <p className="comparison-impact bg-block px-5 py-8 font-display text-[11vw] leading-[0.92] font-bold text-on-block uppercase sm:px-8 lg:bg-transparent lg:py-0 lg:pl-[6vw] lg:text-[3vw]">
             {comparison.closingImpact}
           </p>
         </div>

@@ -19,7 +19,7 @@ export function HeroMotion() {
       const { ok, desktop } = context.conditions as { ok: boolean; desktop: boolean };
       if (!ok) return;
       const prop = desktop ? "--cut" : "--cut-y";
-      const final = desktop ? "64%" : "74%";
+      const final = desktop ? "64%" : "62%";
 
       gsap.set(section, { [prop]: "0%" });
       const run = () => gsap.to(section, { [prop]: final, duration: 1.1, ease: "power3.inOut" });

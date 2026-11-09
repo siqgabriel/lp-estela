@@ -1,29 +1,14 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
+import { s16 } from "@/lib/content";
+import { GUTTER, Prose, Title } from "@/components/system/type";
 
+/** Seção 16 — faixa estreita em ink, sem selo. Título à esquerda, texto apontado para ele à direita. */
 export function Guarantee() {
   return (
-    <Panel mode="palco-warm" className="border-t border-palco-line">
-      <div className="mx-auto max-w-2xl text-center">
-        <Reveal>
-          <h2 className="font-display text-4xl text-strong sm:text-5xl">
-            7 DIAS DE GARANTIA. 100% DE REEMBOLSO.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="mt-6 space-y-4 font-sans text-lg leading-relaxed text-palco-text-soft">
-            <p>
-              Faz sentido restar uma dúvida antes de decidir — principalmente quando a decisão é
-              sobre a própria carreira.
-            </p>
-            <p>
-              Por isso, você tem 7 dias de garantia incondicional. Se, nesse prazo, sentir que não é
-              pra você, é só avisar. Devolvemos 100% do valor, sem perguntas.
-            </p>
-          </div>
-          <p className="mt-6 font-sans text-xl font-semibold text-strong">O risco é nosso.</p>
-        </Reveal>
+    <section data-section="16" className="bg-ink-band-deep text-paper">
+      <div className={`${GUTTER} grid gap-10 py-16 lg:grid-cols-12 lg:items-end lg:gap-[3vw] lg:py-[5vw]`}>
+        <Title lead={s16.lead} impact={s16.impact} className="lg:col-span-6" leadClass="text-lilac" />
+        <Prose paragraphs={[...s16.paragraphs, s16.closing]} className="max-w-[56ch] lg:col-span-5 lg:col-start-8" />
       </div>
-    </Panel>
+    </section>
   );
 }

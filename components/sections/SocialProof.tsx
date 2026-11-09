@@ -1,43 +1,51 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
-import { testimonials, testimonialVideoNames } from "@/lib/content";
+import { s11, testimonials, testimonialVideoNames } from "@/lib/content";
+import { siteConfig } from "@/lib/site-config";
+import { GUTTER, Title } from "@/components/system/type";
 
+/**
+ * Seção 11 — página cheia ink, só tipográfica (sem foto de banco perto das citações).
+ * Citações literais em escala de leitura, desencontradas; vídeos em retângulos verticais secos.
+ */
 export function SocialProof() {
   return (
-    <Panel mode="bastidor" className="border-t border-bastidor-line">
-      <Reveal>
-        <p className="eyebrow text-bastidor-text-soft">Prova social</p>
-        <h2 className="mt-3 font-display text-4xl sm:text-5xl">QUEM JÁ PASSOU POR AQUI.</h2>
-      </Reveal>
+    <section data-section="11" className="bg-ink-band-deep text-paper">
+      <div className={`${GUTTER} py-20 lg:py-[8vw]`}>
+        <Title lead={s11.lead} impact={s11.impact} leadClass="text-lilac" />
 
-      <div className="mt-12 grid gap-10 sm:grid-cols-2">
-        {testimonials.map((t, i) => (
-          <Reveal key={t.name} delay={i * 0.08}>
-            <blockquote className="font-sans text-lg leading-relaxed text-bastidor-text-soft">
-              &ldquo;{t.quote}&rdquo;
-            </blockquote>
-            <p className="mt-4 font-ui text-sm font-semibold uppercase tracking-wider text-bastidor-text">
-              — {t.name}, {t.role}
-            </p>
-          </Reveal>
-        ))}
-      </div>
-
-      <Reveal delay={0.2}>
-        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {testimonialVideoNames.map((name) => (
-            <div
-              key={name}
-              className="flex aspect-[9/16] flex-col items-center justify-end border border-bastidor-line bg-black/20 p-4 text-center"
-            >
-              <p className="font-ui text-xs uppercase tracking-wider text-bastidor-text-soft">
-                [ vídeo pendente ]
-              </p>
-              <p className="mt-2 font-sans text-sm font-semibold">{name}</p>
-            </div>
+        <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-[3vw]">
+          {testimonials.map((t, i) => (
+            <figure key={t.name} className={i === 0 ? "lg:col-span-6" : "lg:col-span-6 lg:col-start-7 lg:mt-[10vw]"}>
+              <span aria-hidden="true" className="block font-display text-[96px] leading-[0.6] text-lilac">
+                “
+              </span>
+              <blockquote className="mt-2 font-sans text-xl leading-relaxed font-medium lg:text-[22px]">
+                {t.quote}
+              </blockquote>
+              <figcaption className="mt-5 font-ui text-sm font-semibold tracking-wider uppercase">
+                {t.name}, {t.role}
+              </figcaption>
+            </figure>
           ))}
         </div>
-      </Reveal>
-    </Panel>
+
+        <ul className="mt-16 grid grid-cols-2 gap-3 lg:mt-[6vw] lg:ml-auto lg:w-[58%] lg:grid-cols-4 lg:gap-[1vw]">
+          {testimonialVideoNames.map((name) => {
+            const src = siteConfig.videos.testimonials[name];
+            return (
+              <li key={name} className="flex aspect-[9/16] flex-col justify-end bg-ink-band p-4 ring-1 ring-paper/25">
+                {src ? (
+                  <iframe src={src} title={`Depoimento de ${name}`} className="h-full w-full" allow="fullscreen" />
+                ) : (
+                  <span className="font-ui text-xs text-lilac" data-pending="video-depoimento">
+                    [Pendente: vídeo]
+                  </span>
+                )}
+                <span className="mt-2 font-display text-[clamp(22px,1.7vw,28px)] leading-none font-bold uppercase">{name}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
   );
 }

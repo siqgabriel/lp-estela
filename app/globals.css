@@ -26,6 +26,7 @@
   --type-accent: var(--violet);
   --type-on-block: var(--white);
   --type-on-block-soft: #c9c0e2;
+  --type-accent-on-block: var(--lilac);
   --numeral: var(--numeral-on-light);
   --rule: #e3ddee;
   --focus-ring: #6b55c4;
@@ -59,6 +60,7 @@
   --type-accent: var(--lilac);
   --type-on-block: var(--ink);
   --type-on-block-soft: #4f4a63;
+  --type-accent-on-block: var(--violet);
   --numeral: var(--numeral-on-dark);
   --rule: #352a52;
   --focus-ring: #cdbdf2;
@@ -85,6 +87,7 @@
   --color-accent: var(--type-accent);
   --color-on-block: var(--type-on-block);
   --color-on-block-soft: var(--type-on-block-soft);
+  --color-accent-on-block: var(--type-accent-on-block);
   --color-numeral: var(--numeral);
   --color-rule: var(--rule);
 
@@ -94,6 +97,12 @@
   --color-paper-rule: var(--rule-on-paper);
   /* Linha de entrada sobre papel branco fixo (seções com foto em letra). */
   --color-paper-accent: var(--violet);
+  /* Faixas ink fixas (seções "página cheia ink"): iguais nos dois temas. */
+  --color-ink-band: var(--ink);
+  --color-ink-band-deep: var(--ink-deep);
+  --color-lilac: var(--lilac);
+  --color-numeral-dark: var(--numeral-on-dark);
+  --color-numeral-light: var(--numeral-on-light);
 
   /* Legados */
   --color-violet: var(--violet);
@@ -140,12 +149,15 @@ body {
   outline-offset: 3px;
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-bebas), Impact, "Arial Narrow", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-wrap: balance;
-  margin: 0;
+/* Em @layer base para que utilitários (font-sans, font-normal...) possam sobrescrever. */
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: var(--font-bebas), Impact, "Arial Narrow", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+    margin: 0;
+  }
 }
 
 /* Seções legadas usam .font-display esperando o peso único antigo (= Bold).

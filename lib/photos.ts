@@ -68,7 +68,19 @@ export const photos = {
  * Quando uma foto for aprovada: colocar o arquivo em public/img/photo/estela/,
  * liberar o arquivo no .gitignore e registrar aqui com rights "liberada" e approval preenchido.
  */
-export const estelaPhotos: Record<string, Photo> = {};
+export const estelaPhotos = {
+  /** Recorte extraído do PDF "6 necessidades". Uso local para compor o layout; não commitar. */
+  sentada: {
+    id: "estela-sentada",
+    src: "/img/photo/estela/estela-sentada.png",
+    width: 1100,
+    height: 1888,
+    alt: "Estela Albani, sentada, de vestido preto, olhando para a câmera",
+    tone: "bw",
+    rights: "aguardando-aprovacao",
+    approval: null,
+  },
+} satisfies Record<string, Photo>;
 
 export type PhotoId = keyof typeof photos;
 

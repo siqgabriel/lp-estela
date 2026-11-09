@@ -1,39 +1,24 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
+import { s5 } from "@/lib/content";
+import { photos } from "@/lib/photos";
+import { Photo } from "@/components/media/Photo";
+import { GUTTER, IMPACT, Prose, Title } from "@/components/system/type";
 
+/**
+ * Seção 5 — página cheia ink, continuação da faixa da seção 4. Trecho de leitura:
+ * texto em coluna à esquerda; a foto sangra até a borda direita, encostada no topo da seção.
+ */
 export function LivingUncertainty() {
   return (
-    <Panel mode="bastidor" className="border-t border-bastidor-line">
-      <div className="grid gap-10 sm:grid-cols-[1fr_1.1fr] sm:items-start">
-        <Reveal>
-          <h2 className="font-display text-4xl sm:text-5xl">
-            VIVER DE ATUAÇÃO TAMBÉM É VIVER DE INCERTEZA.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="space-y-5 font-sans text-lg leading-relaxed text-bastidor-text-soft">
-            <p>
-              Viver de interpretação, no Brasil, costuma ser viver de intervalo: um contrato aqui,
-              um silêncio ali, a incerteza de quando vem o próximo.
-            </p>
-            <p>
-              Isso pesa. E pesa mais ainda quando a carreira inteira depende de alguém, em algum
-              lugar, lembrar do seu nome na hora certa.
-            </p>
-            <p>Não existe fórmula que resolva isso da noite pro dia — desconfie de quem promete.</p>
-            <p>
-              A instabilidade faz parte da carreira de um ator. Mas isso não significa ficar à
-              espera: quanto mais presente, visível e lembrado você se mantém no mercado, maiores
-              são as possibilidades de ampliar e diversificar o trabalho que chega até você.
-            </p>
-            <p>E isso, sim, dá pra construir.</p>
-            <p className="font-semibold text-bastidor-text">
-              O método foca no que está sob seu controle: mais frentes de trabalho, pra depender
-              menos de uma única fonte.
-            </p>
-          </div>
-        </Reveal>
+    <section data-section="5" className="relative grid bg-ink-band text-paper lg:grid-cols-12">
+      <div className={`${GUTTER} order-2 py-16 lg:order-1 lg:col-span-7 lg:py-[7vw]`}>
+        <Title lead={s5.lead} impact={s5.impact} leadClass="text-lilac" />
+        <Prose paragraphs={s5.paragraphs} boldLast={false} className="mt-10 max-w-[58ch]" />
+        <p className={`${IMPACT} mt-12 text-[clamp(40px,4.6vw,72px)]`}>{s5.pull}</p>
+        <p className="mt-6 max-w-[52ch] font-sans text-[17px] leading-relaxed font-bold lg:text-[18px]">{s5.closing}</p>
       </div>
-    </Panel>
+      <div className="relative order-1 aspect-[16/10] lg:order-2 lg:col-span-5 lg:aspect-auto lg:min-h-[70vh] lg:self-start">
+        <Photo photo={photos.ft5} fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
+      </div>
+    </section>
   );
 }
