@@ -7,6 +7,11 @@ type PhotoProps = Omit<ImageProps, "src" | "alt" | "width" | "height"> & {
   fill?: boolean;
 };
 
+/** Classe de tratamento de cor a partir do manifesto. Único ponto que decide o P&B. */
+export function photoToneClass(photo: PhotoEntry): string {
+  return photo.tone === "bw" ? "grayscale" : "";
+}
+
 /**
  * Único ponto que aplica o tratamento de cor das fotos: `tone: "bw"` vira
  * `filter: grayscale(1)`. Foto sem aprovação nunca é renderizada.
@@ -15,7 +20,7 @@ export function Photo({ photo, fill, className = "", ...rest }: PhotoProps) {
   if (!isPublishable(photo)) {
     return <PhotoPlaceholder label={`Foto aguardando aprovação: ${photo.alt}`} className={className} />;
   }
-  const tone = photo.tone === "bw" ? "grayscale" : "";
+  const tone = photoToneClass(photo);
   return fill ? (
     <Image src={photo.src} alt={photo.alt} fill className={`${tone} ${className}`} {...rest} />
   ) : (

@@ -6,7 +6,7 @@ export function SiteFooter() {
   const legal = siteConfig.legal;
   const legalPending = !legal.company || !legal.cnpj || !legal.termsUrl || !legal.privacyUrl;
   return (
-    <footer className="border-t border-bastidor-line bg-bastidor-bg-deep py-12 text-bastidor-text-soft">
+    <footer className="border-t border-bastidor-line bg-bastidor-bg-deep pt-12 pb-24 text-bastidor-text-soft lg:pb-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 text-center sm:px-8">
         <Image src="/img/brand/logo-estela.png" alt="Estela Albani" width={543} height={209} className="h-12 w-auto" />
         <p className="font-ui text-xs">

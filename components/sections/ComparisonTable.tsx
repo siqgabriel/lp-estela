@@ -1,52 +1,64 @@
-import { Panel } from "@/components/layout/Panel";
-import { Reveal } from "@/components/layout/Reveal";
-import { comparisonRows } from "@/lib/content";
+import { comparison, comparisonRows } from "@/lib/content";
+import { ComparisonMotion } from "./ComparisonMotion";
 
+/**
+ * Seção 7 — Duas formas. Tabela real (pares lidos juntos por leitores de tela).
+ * - Celular: eixo horizontal; cada par vira duas faixas (campo e bloco).
+ * - Desktop: eixo vertical em 50%; o título cruza o eixo; textos apontam para o eixo.
+ *   Único pin da página (ComparisonMotion): o eixo avança sobre a coluna "reagindo".
+ */
 export function ComparisonTable() {
   return (
-    <Panel mode="palco">
-      <Reveal>
-        <h2 className="max-w-2xl font-display text-4xl text-strong sm:text-5xl">
-          DUAS FORMAS DE TRATAR A CARREIRA.
+    <section
+      id="duas-formas"
+      data-section="7"
+      className="comparison relative isolate overflow-hidden bg-field text-strong"
+      style={{ "--cut": "54%" } as React.CSSProperties}
+    >
+      <div aria-hidden="true" className="comparison-block absolute inset-y-0 right-0 -z-10 hidden bg-block lg:block" />
+
+      <div className="comparison-pin lg:flex lg:min-h-[calc(100svh-var(--header-h))] lg:flex-col lg:justify-center lg:py-[2.5vw]">
+        <h2 className="split-x-lg px-5 pt-16 pb-8 font-display text-[15vw] leading-[0.9] font-bold uppercase [--split-a:var(--type-strong)] [--split-b:var(--type-on-block)] sm:px-8 lg:px-0 lg:pt-0 lg:pb-[2vw] lg:text-center lg:text-[7vw]">
+          {comparison.title}
         </h2>
-      </Reveal>
 
-      <div className="mt-12 grid overflow-hidden rounded-sm border border-palco-line sm:grid-cols-2">
-        <Reveal delay={0.05} className="bg-bastidor-bg p-7 text-bastidor-text sm:p-9">
-          <p className="font-ui text-xs font-semibold uppercase tracking-widest text-bastidor-text-soft">
-            Reagindo às oportunidades
-          </p>
-          <ul className="mt-6 space-y-5 font-sans text-base leading-snug">
+        <table className="comparison-table w-full border-collapse font-sans">
+          <caption className="sr-only">
+            {comparison.reactingHeader} e {comparison.decidingHeader}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" className="cmp-a font-display text-2xl font-bold lg:text-[2.2vw]">
+                {comparison.reactingHeader}
+              </th>
+              <th scope="col" className="cmp-b font-display text-2xl font-bold lg:text-[2.2vw]">
+                {comparison.decidingHeader}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
             {comparisonRows.map((row) => (
-              <li key={row.reacting} className="border-t border-bastidor-line pt-5 first:border-t-0 first:pt-0">
-                {row.reacting}
-              </li>
+              <tr key={row.reacting} className="comparison-row">
+                <td className="cmp-a text-lg leading-snug lg:text-[1.2vw]">{row.reacting}</td>
+                <td className="cmp-b text-lg leading-snug font-medium lg:text-[1.2vw]">{row.deciding}</td>
+              </tr>
             ))}
-          </ul>
-        </Reveal>
-        <Reveal delay={0.15} className="bg-violet p-7 text-white sm:p-9">
-          <p className="font-ui text-xs font-semibold uppercase tracking-widest text-white/70">
-            Decidindo a própria carreira
-          </p>
-          <ul className="mt-6 space-y-5 font-sans text-base leading-snug">
-            {comparisonRows.map((row) => (
-              <li key={row.deciding} className="border-t border-white/15 pt-5 first:border-t-0 first:pt-0">
-                {row.deciding}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </div>
+          </tbody>
+        </table>
 
-      <Reveal delay={0.25}>
-        <div className="mx-auto mt-10 max-w-2xl text-center font-sans text-lg text-palco-text-soft">
-          <p>As duas colunas descrevem a mesma profissão.</p>
-          <p>A diferença é quem está no comando dela.</p>
-          <p className="mt-3 text-xl font-semibold text-strong">
-            O Gestão de Carreira é o que coloca você no comando.
+        <div className="comparison-closing grid lg:grid-cols-2 lg:pt-[2vw]">
+          <p className="px-5 py-8 font-sans text-lg leading-relaxed sm:px-8 lg:py-0 lg:pr-[6vw] lg:text-right lg:text-[1.25vw]">
+            {comparison.closing[0]}
+            <br />
+            {comparison.closing[1]}
+          </p>
+          <p className="comparison-impact bg-block px-5 py-8 font-display text-[11vw] leading-[0.92] font-bold text-on-block uppercase sm:px-8 lg:bg-transparent lg:py-0 lg:pl-[6vw] lg:text-[3.4vw]">
+            {comparison.closingImpact}
           </p>
         </div>
-      </Reveal>
-    </Panel>
+      </div>
+
+      <ComparisonMotion />
+    </section>
   );
 }

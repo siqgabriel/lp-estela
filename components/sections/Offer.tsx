@@ -22,6 +22,7 @@ export function Offer() {
           </p>
           <a
             href={siteConfig.checkoutUrl ?? "#oferta"}
+            data-cta-inline
             aria-describedby={siteConfig.checkoutUrl ? undefined : "checkout-pendente"}
             className="mt-8 inline-block w-full rounded-full btn-on-field px-8 py-4 text-center font-ui text-sm font-semibold uppercase tracking-wider transition-transform hover:scale-[1.01]"
           >

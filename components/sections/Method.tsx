@@ -45,6 +45,7 @@ export function Method() {
       <Reveal delay={0.1}>
         <a
           href="#oferta"
+            data-cta-inline
           className="mt-14 inline-block rounded-full btn-on-field px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider  transition-transform hover:scale-[1.02]"
         >
           Quero conhecer o método

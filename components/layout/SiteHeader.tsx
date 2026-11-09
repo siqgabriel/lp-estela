@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
+import { HeaderCta } from "./HeaderCta";
 
 /**
  * Header sobre papel branco nos dois temas: o único logo disponível é em ink
@@ -22,12 +23,7 @@ export function SiteHeader() {
         </a>
 
         <div className="flex items-center gap-4">
-          <a
-            href="#oferta"
-            className="hidden rounded-full bg-paper-ink px-5 py-3 font-ui text-xs font-semibold tracking-wider text-paper uppercase transition-opacity hover:opacity-90 sm:inline-block"
-          >
-            Quero entrar
-          </a>
+          <HeaderCta />
           <ThemeToggle />
         </div>
       </div>

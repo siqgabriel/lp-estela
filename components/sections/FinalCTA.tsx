@@ -18,6 +18,7 @@ export function FinalCTA() {
         <Reveal delay={0.2}>
           <a
             href="#oferta"
+            data-cta-inline
             className="mt-9 inline-block rounded-full btn-on-dark px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider  transition-transform hover:scale-[1.02]"
           >
             Quero começar agora
@@ -25,7 +26,7 @@ export function FinalCTA() {
         </Reveal>
 
         <Reveal delay={0.3}>
-          <div className="mt-16 border-t border-bastidor-line pt-10">
+          <div id="duvidas" className="mt-16 border-t border-bastidor-line pt-10">
             <h3 className="font-sans text-lg font-semibold">Alguma dúvida?</h3>
             <p className="mt-2 font-sans text-base text-bastidor-text-soft">
               Estamos prontos para responder qualquer pergunta.

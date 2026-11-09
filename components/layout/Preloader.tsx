@@ -35,6 +35,7 @@ export function Preloader() {
     const done = () => {
       setScrollLocked(false);
       setVisible(false);
+      (window as unknown as { __gcPreloaderDone?: boolean }).__gcPreloaderDone = true;
       window.dispatchEvent(new Event("gc:preloader-done"));
     };
 

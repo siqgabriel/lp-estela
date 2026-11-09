@@ -97,7 +97,7 @@ export const comparisonRows = [
     deciding: "Tem várias frentes possíveis ao mesmo tempo",
   },
   {
-    reacting: "A carreira estagna e ninguém sabe muito bem por quê",
+    reacting: "A carreira estagna e ninguém sabe muito bem por que",
     deciding: "A carreira tem direção — mesmo nos períodos de silêncio",
   },
 ] as const;
@@ -197,3 +197,52 @@ export const pricing = {
   installments: "ou R$ 497 em 12x",
 } as const;
 
+/* ------------------------------------------------------------------ */
+/* Seções reformuladas (etapa 4). Texto literal do PDF; a divisão em   */
+/* linhas é tratamento visual e não altera palavras nem pontuação.     */
+/* ------------------------------------------------------------------ */
+
+/** Seção 1 — Hero. Headline: "TRANSFORME SEU PREPARO ARTÍSTICO EM VISIBILIDADE NO MERCADO." */
+export const hero = {
+  lead: "TRANSFORME SEU PREPARO ARTÍSTICO EM",
+  word: "VISIBILIDADE",
+  wordMobileLines: ["VISIBI", "LIDADE"],
+  impact: "NO MERCADO.",
+  subheadline: "O caminho para o seu trabalho chegar até quem importa, sem depender de sorte.",
+  videoIntro: "Nesta aula você vai descobrir 3 coisas que fazem um ator ser lembrado.",
+  cta: "QUERO GANHAR VISIBILIDADE",
+} as const;
+
+/** Seção 4. Título: "O MERCADO PRECISA CONSEGUIR LER VOCÊ COM CLAREZA." */
+export const marketClarity = {
+  lead: "O MERCADO PRECISA CONSEGUIR",
+  impact: "LER VOCÊ COM",
+  word: "CLAREZA.",
+  paragraphs: [
+    "E é exatamente isso que o curso faz: as aulas ajudam você a traduzir o que você é artisticamente para uma linguagem que o mercado reconhece.",
+    "Não é sobre mudar quem você é. É sobre deixar de esconder quem você é por trás de um material que não comunica, de uma presença que não chega, de um posicionamento que não existe.",
+  ],
+} as const;
+
+/** Seção 7. */
+export const comparison = {
+  title: "DUAS FORMAS DE TRATAR A CARREIRA.",
+  reactingHeader: "REAGINDO ÀS OPORTUNIDADES",
+  decidingHeader: "DECIDINDO A PRÓPRIA CARREIRA",
+  closing: [
+    "As duas colunas descrevem a mesma profissão.",
+    "A diferença é quem está no comando dela.",
+  ],
+  closingImpact: "O Gestão de Carreira é o que coloca você no comando.",
+} as const;
+
+/**
+ * CTAs literais do PDF, por seção. O CTA fixo (celular) e o do header levam ao
+ * #oferta e usam o texto do CTA da oferta, para a mesma ação ter o mesmo nome.
+ */
+export const ctas = {
+  s1: "QUERO GANHAR VISIBILIDADE",
+  s8: "QUERO CONHECER O MÉTODO",
+  s15: "QUERO ENTRAR NO GESTÃO DE CARREIRA",
+  s17: "QUERO COMEÇAR AGORA",
+} as const;

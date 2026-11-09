@@ -25,6 +25,7 @@
   --type-strong: var(--ink);
   --type-accent: var(--violet);
   --type-on-block: var(--white);
+  --type-on-block-soft: #c9c0e2;
   --numeral: var(--numeral-on-light);
   --rule: #e3ddee;
   --focus-ring: #6b55c4;
@@ -57,6 +58,7 @@
   --type-strong: var(--white);
   --type-accent: var(--lilac);
   --type-on-block: var(--ink);
+  --type-on-block-soft: #4f4a63;
   --numeral: var(--numeral-on-dark);
   --rule: #352a52;
   --focus-ring: #cdbdf2;
@@ -71,7 +73,7 @@
 }
 
 @theme inline {
-  --font-display: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bebas), Impact, "Arial Narrow", sans-serif;
   --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
   --font-ui: "Inter", ui-sans-serif, system-ui, sans-serif;
 
@@ -82,6 +84,7 @@
   --color-strong: var(--type-strong);
   --color-accent: var(--type-accent);
   --color-on-block: var(--type-on-block);
+  --color-on-block-soft: var(--type-on-block-soft);
   --color-numeral: var(--numeral);
   --color-rule: var(--rule);
 
@@ -89,6 +92,8 @@
   --color-paper: var(--white);
   --color-paper-ink: var(--ink);
   --color-paper-rule: var(--rule-on-paper);
+  /* Linha de entrada sobre papel branco fixo (seções com foto em letra). */
+  --color-paper-accent: var(--violet);
 
   /* Legados */
   --color-violet: var(--violet);
@@ -136,10 +141,177 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-display);
+  font-family: var(--font-bebas), Impact, "Arial Narrow", sans-serif;
+  font-weight: 700;
   letter-spacing: 0.01em;
   text-wrap: balance;
   margin: 0;
+}
+
+/* Seções legadas usam .font-display esperando o peso único antigo (= Bold).
+   :where() tem especificidade zero: font-normal/font-bold continuam valendo. */
+:where(.font-display) {
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------- */
+/* Eixo de Corte                                                    */
+/* ---------------------------------------------------------------- */
+
+/* Posição do eixo; registrada para poder ser animada (GSAP tween de --cut). */
+@property --cut {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 64%;
+}
+
+/*
+  Palavra que cruza o eixo: texto real com gradiente de parada dura na mesma
+  coordenada do bloco. O elemento ocupa a largura do campo inteiro para que
+  --cut tenha a mesma referência do bloco.
+*/
+.split-x,
+.split-y {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.split-x {
+  background-image: linear-gradient(90deg, var(--split-a) var(--cut), var(--split-b) var(--cut));
+}
+.split-y {
+  background-image: linear-gradient(180deg, var(--split-a) var(--cut-y), var(--split-b) var(--cut-y));
+}
+
+/* Hero: bloco do eixo (desktop) e bloco abaixo do corte horizontal (celular). */
+.hero-block {
+  left: var(--cut);
+}
+@media (max-width: 1023.98px) {
+  .hero-word::after {
+    content: "";
+    position: absolute;
+    inset: var(--cut-y) 0 0 0;
+    background: var(--block);
+    z-index: -1;
+  }
+}
+
+/* Seção 7: no desktop o título cruza o eixo; no celular cada par vira faixa. */
+.comparison-block {
+  left: var(--cut);
+}
+@media (min-width: 1024px) {
+  .split-x-lg {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(90deg, var(--split-a) var(--cut), var(--split-b) var(--cut));
+  }
+}
+
+/* Seção 7 — tabela: faixas no celular, duas colunas apontando para o eixo no desktop. */
+.comparison-table th,
+.comparison-table td {
+  display: block;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  vertical-align: top;
+}
+.comparison-table tr {
+  display: block;
+}
+.comparison-table .cmp-a {
+  background: var(--field);
+  color: var(--type-strong);
+  border-top: 1px solid var(--rule);
+}
+.comparison-table .cmp-b {
+  background: var(--block);
+  color: var(--type-on-block);
+}
+@media (min-width: 640px) {
+  .comparison-table th,
+  .comparison-table td {
+    padding-inline: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .comparison-table {
+    display: table;
+    table-layout: fixed;
+  }
+  .comparison-table thead {
+    display: table-header-group;
+  }
+  .comparison-table tbody {
+    display: table-row-group;
+  }
+  .comparison-table tr {
+    display: table-row;
+  }
+  .comparison-table th,
+  .comparison-table td {
+    display: table-cell;
+    width: 50%;
+    padding-block: 0.85vw;
+  }
+  /* Margem interna maior que o curso do eixo (54% → 46%): o texto nunca fica sob o bloco. */
+  .comparison-table .cmp-a {
+    border-top: 0;
+    background: linear-gradient(var(--rule), var(--rule)) top left / calc(100% - 4vw) 1px no-repeat;
+    text-align: right;
+    padding-left: 4vw;
+    padding-right: 6vw;
+  }
+  .comparison-table .cmp-b {
+    background: transparent;
+    padding-left: 6vw;
+    padding-right: 4vw;
+    border-top: 1px solid color-mix(in srgb, var(--type-on-block) 22%, transparent);
+  }
+  .comparison-table thead .cmp-a,
+  .comparison-table thead .cmp-b {
+    border-top: 0;
+    background: none;
+  }
+}
+
+/* Foto dentro da letra (máximo 3 palavras na página; ver CLAUDE.md). */
+.photo-word {
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@supports not ((background-clip: text) or (-webkit-background-clip: text)) {
+  .split-x,
+  .split-y {
+    background: none;
+    color: var(--split-a);
+    -webkit-text-fill-color: currentColor;
+  }
+  .photo-word {
+    background: none;
+    color: var(--ink);
+    -webkit-text-fill-color: currentColor;
+  }
+}
+
+@media (forced-colors: active) {
+  .split-x,
+  .split-y,
+  .photo-word {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+    forced-color-adjust: none;
+  }
 }
 
 p {

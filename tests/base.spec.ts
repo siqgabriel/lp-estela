@@ -26,11 +26,28 @@ async function contrastFailures(page: Page) {
       });
       return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
     };
-    const bgOf = (el: Element | null): number[] => {
-      while (el) {
-        const p = parse(getComputedStyle(el).backgroundColor);
+    // Fundo real atrás do texto: pilha de elementos no ponto central do texto
+    // (enxerga blocos irmãos posicionados, como o bloco do eixo). Ignora camadas fixas.
+    const isFixedLayer = (n: Element) => {
+      for (let e: Element | null = n; e; e = e.parentElement) {
+        const pos = getComputedStyle(e).position;
+        if (pos === "fixed" || pos === "sticky") return true;
+      }
+      return false;
+    };
+    const bgOf = (el: Element): number[] => {
+      const fixedText = isFixedLayer(el);
+      el.scrollIntoView({ block: "center" });
+      // Amostra sob o primeiro trecho de texto (não no início da caixa, que pode estar do outro lado do eixo).
+      const textNode = Array.from(el.childNodes).find((n) => n.nodeType === 3 && n.textContent!.trim())!;
+      const range = document.createRange();
+      range.selectNodeContents(textNode);
+      const r = range.getClientRects()[0] ?? el.getBoundingClientRect();
+      const stack = document.elementsFromPoint(r.left + Math.min(r.width / 2, 12), r.top + r.height / 2);
+      for (const n of stack) {
+        if (n.tagName === "CANVAS" || (!fixedText && isFixedLayer(n))) continue;
+        const p = parse(getComputedStyle(n).backgroundColor);
         if (p[3] > 0.5) return p;
-        el = el.parentElement;
       }
       return [255, 255, 255];
     };
@@ -42,6 +59,10 @@ async function contrastFailures(page: Page) {
       const cs = getComputedStyle(el);
       const r = el.getBoundingClientRect();
       if (r.width < 2 || r.height < 2 || cs.visibility === "hidden" || el.closest(".sr-only")) continue;
+      // Elementos escondidos por opacidade (ex.: CTA persistente fora de hora) não são lidos.
+      let hidden = false;
+      for (let e: Element | null = el; e; e = e.parentElement) if (Number(getComputedStyle(e).opacity) < 0.1) hidden = true;
+      if (hidden) continue;
       // Texto com background-clip (foto ou gradiente na letra) é verificado em teste próprio.
       if (cs.webkitTextFillColor === "rgba(0, 0, 0, 0)") continue;
       const fg = parse(cs.color);

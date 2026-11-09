@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Barlow, Inter } from "next/font/google";
+import { Barlow, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { themeInitScript } from "@/components/layout/ThemeToggle";
@@ -7,15 +8,21 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Preloader } from "@/components/layout/Preloader";
 import { CursorTrail } from "@/components/layout/CursorTrail";
 import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
+import { CtaDock } from "@/components/layout/CtaDock";
 import { siteConfig } from "@/lib/site-config";
 
-// Bebas Neue do Google = peso Bold dos materiais. A Regular entra por next/font/local na etapa 4,
-// depois da conferência da licença (ver CLAUDE.md § Tipografia).
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-display",
+// Bebas Neue (família 2014): Regular = linha de entrada, Bold = impacto.
+// Licença SIL OFL 1.1 verificada; procedência em app/fonts/bebas-neue/SOURCE.md.
+const bebasNeue = localFont({
+  src: [
+    { path: "./fonts/bebas-neue/BebasNeue-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/bebas-neue/BebasNeue-Bold.woff2", weight: "700", style: "normal" },
+  ],
+  // Variável própria: next/font/local gera nome de família com hash, então o token
+  // --font-display do Tailwind aponta para esta variável (globals.css).
+  variable: "--font-bebas",
   display: "swap",
+  fallback: ["Impact", "Arial Narrow", "sans-serif"],
 });
 
 const barlow = Barlow({
@@ -77,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
         </SmoothScrollProvider>
+        <CtaDock />
       </body>
     </html>
   );
