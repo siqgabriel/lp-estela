@@ -6,7 +6,7 @@ export function Guarantee() {
     <Panel mode="palco-warm" className="border-t border-palco-line">
       <div className="mx-auto max-w-2xl text-center">
         <Reveal>
-          <h2 className="font-display text-4xl text-ink sm:text-5xl">
+          <h2 className="font-display text-4xl text-strong sm:text-5xl">
             7 DIAS DE GARANTIA. 100% DE REEMBOLSO.
           </h2>
         </Reveal>
@@ -21,7 +21,7 @@ export function Guarantee() {
               pra você, é só avisar. Devolvemos 100% do valor, sem perguntas.
             </p>
           </div>
-          <p className="mt-6 font-sans text-xl font-semibold text-ink">O risco é nosso.</p>
+          <p className="mt-6 font-sans text-xl font-semibold text-strong">O risco é nosso.</p>
         </Reveal>
       </div>
     </Panel>

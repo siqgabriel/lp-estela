@@ -7,7 +7,7 @@ export function CulturalProjects() {
     <Panel mode="palco" className="border-t border-palco-line">
       <div className="grid gap-10 sm:grid-cols-[1.1fr_1fr] sm:items-start">
         <Reveal>
-          <h2 className="font-display text-4xl text-ink sm:text-5xl">
+          <h2 className="font-display text-4xl text-strong sm:text-5xl">
             CRIATIVIDADE TAMBÉM É ESTRATÉGIA.
           </h2>
           <div className="mt-6 space-y-5 font-sans text-lg leading-relaxed text-palco-text-soft">
@@ -30,21 +30,21 @@ export function CulturalProjects() {
               Muitos artistas não esperam mais testes, editais ou convites. Eles escrevem, produzem,
               filmam, dirigem, se associam, inventam caminhos — e fazem projetos acontecerem.
             </p>
-            <p className="font-semibold text-ink">
+            <p className="font-semibold text-strong">
               É esse tipo de movimento que o módulo de Projetos Culturais ajuda você a criar.
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={0.15}>
-          <p className="font-ui text-xs font-semibold uppercase tracking-widest text-violet">
+          <p className="font-ui text-xs font-semibold uppercase tracking-widest text-accent">
             Um bom projeto pode virar
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             {culturalFormats.map((format) => (
               <span
                 key={format}
-                className="rounded-full border border-palco-line px-4 py-1.5 font-sans text-sm text-ink"
+                className="rounded-full border border-palco-line px-4 py-1.5 font-sans text-sm text-strong"
               >
                 {format}
               </span>

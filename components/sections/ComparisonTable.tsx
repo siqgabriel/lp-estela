@@ -6,7 +6,7 @@ export function ComparisonTable() {
   return (
     <Panel mode="palco">
       <Reveal>
-        <h2 className="max-w-2xl font-display text-4xl text-ink sm:text-5xl">
+        <h2 className="max-w-2xl font-display text-4xl text-strong sm:text-5xl">
           DUAS FORMAS DE TRATAR A CARREIRA.
         </h2>
       </Reveal>
@@ -42,7 +42,7 @@ export function ComparisonTable() {
         <div className="mx-auto mt-10 max-w-2xl text-center font-sans text-lg text-palco-text-soft">
           <p>As duas colunas descrevem a mesma profissão.</p>
           <p>A diferença é quem está no comando dela.</p>
-          <p className="mt-3 text-xl font-semibold text-ink">
+          <p className="mt-3 text-xl font-semibold text-strong">
             O Gestão de Carreira é o que coloca você no comando.
           </p>
         </div>

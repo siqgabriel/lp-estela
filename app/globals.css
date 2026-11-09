@@ -1,39 +1,73 @@
 @import "tailwindcss";
 
 /*
-  Tokens de marca: #1f1539 (ink), #331e69 (violet), #ffffff (white).
-  Todo o resto é tinta/sombra derivada dessas três — ver CLAUDE.md.
-  "Bastidor" (escuro) é fixo: seções de dor/diagnóstico da copy.
-  "Palco" (claro) respeita o tema global claro/escuro do visitante.
+  Tokens em três camadas (ver CLAUDE.md § Cores e tokens).
+  1. Primitivos: valores crus da marca. Nunca usados direto em componentes.
+  2. Semânticos: papel na composição; mudam com o tema.
+  3. Legados (bastidor/palco): aliases da primeira versão, mantidos só até a
+     reformulação das seções. Também derivam dos semânticos ou de valores fixos.
 */
 :root {
+  /* 1. Primitivos */
   --ink: #1f1539;
-  --ink-soft: #5c4a93;
+  --ink-deep: #140d24;
   --violet: #331e69;
-  --violet-soft: #4a3a7a;
   --white: #ffffff;
+  --lilac: #cdbdf2;
+  --numeral-on-light: #625b74;
+  --numeral-on-dark: #bdbac4;
+  --rule-on-paper: #e3ddee;
 
-  --bastidor-bg: #1f1539;
-  --bastidor-bg-deep: #140d24;
+  /* 2. Semânticos — tema claro (padrão) */
+  --field: var(--white);
+  --block: var(--ink);
+  --block-soft: var(--ink);
+  --type-strong: var(--ink);
+  --type-accent: var(--violet);
+  --type-on-block: var(--white);
+  --numeral: var(--numeral-on-light);
+  --rule: #e3ddee;
+  --focus-ring: #6b55c4;
+  --placeholder-a: #b9b5c6;
+  --placeholder-b: #ece9f2;
+
+  /* 3. Legados — superfícies escuras fixas (iguais nos dois temas) */
+  --bastidor-bg: var(--ink);
+  --bastidor-bg-deep: var(--ink-deep);
   --bastidor-text: #f3effa;
   --bastidor-text-soft: #b3a7cf;
   --bastidor-line: #3a2f5c;
 
-  --palco-bg: #ffffff;
+  /* 3. Legados — superfícies claras (seguem o tema) */
+  --palco-bg: var(--field);
   --palco-bg-warm: #f7f4fb;
   --palco-text: #241a3d;
   --palco-text-soft: #5b5272;
-  --palco-line: #e3ddee;
+  --palco-line: var(--rule);
 
-  --focus-ring: #8a73d6;
+  --header-h: 72px;
+  color-scheme: light;
 }
 
+/* Tema escuro: tokens próprios, sem inversão automática. */
 :root[data-theme="dark"] {
+  --field: var(--ink);
+  --block: var(--white);
+  --block-soft: var(--ink-deep);
+  --type-strong: var(--white);
+  --type-accent: var(--lilac);
+  --type-on-block: var(--ink);
+  --numeral: var(--numeral-on-dark);
+  --rule: #352a52;
+  --focus-ring: #cdbdf2;
+  --placeholder-a: #4a3f6b;
+  --placeholder-b: #241a3d;
+
   --palco-bg: #15101f;
   --palco-bg-warm: #1b1430;
   --palco-text: #efe9fb;
   --palco-text-soft: #b3a7cf;
-  --palco-line: #352a52;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -41,18 +75,28 @@
   --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
   --font-ui: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-violet: var(--violet);
-  --color-violet-soft: var(--violet-soft);
-  --color-white: var(--white);
+  /* Semânticos expostos como utilitários: bg-field, text-strong, text-accent... */
+  --color-field: var(--field);
+  --color-block: var(--block);
+  --color-block-soft: var(--block-soft);
+  --color-strong: var(--type-strong);
+  --color-accent: var(--type-accent);
+  --color-on-block: var(--type-on-block);
+  --color-numeral: var(--numeral);
+  --color-rule: var(--rule);
 
+  /* Superfícies fixas (header e blocos de foto em letra ficam brancos nos dois temas). */
+  --color-paper: var(--white);
+  --color-paper-ink: var(--ink);
+  --color-paper-rule: var(--rule-on-paper);
+
+  /* Legados */
+  --color-violet: var(--violet);
   --color-bastidor-bg: var(--bastidor-bg);
   --color-bastidor-bg-deep: var(--bastidor-bg-deep);
   --color-bastidor-text: var(--bastidor-text);
   --color-bastidor-text-soft: var(--bastidor-text-soft);
   --color-bastidor-line: var(--bastidor-line);
-
   --color-palco-bg: var(--palco-bg);
   --color-palco-bg-warm: var(--palco-bg-warm);
   --color-palco-text: var(--palco-text);
@@ -66,6 +110,11 @@
 
 html {
   scroll-behavior: auto;
+  scroll-padding-top: var(--header-h);
+}
+
+html.is-scroll-locked {
+  overflow: hidden;
 }
 
 body {
@@ -104,11 +153,61 @@ p {
   text-transform: uppercase;
 }
 
+/* Botões: retângulo seco. Sobre superfície escura fixa e sobre o campo do tema. */
+.btn-on-dark {
+  background: var(--white);
+  color: var(--ink);
+}
+.btn-on-field {
+  background: var(--type-strong);
+  color: var(--field);
+}
+
+/* FAQ com details nativo */
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary .faq-icon::before {
+  content: "+";
+}
+.faq details[open] summary .faq-icon::before {
+  content: "–";
+}
+
+/*
+  Preloader: o overlay vem do servidor. Se o JS não assumir o controle
+  (JS desligado ou falha de hidratação), esta animação o remove sozinha.
+  Com JS, o componente adiciona .is-controlled e assume a saída.
+*/
+.preloader {
+  animation: preloader-failsafe 0.4s ease-out 3.5s forwards;
+}
+.preloader.is-controlled {
+  animation: none;
+}
+@keyframes preloader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .preloader {
+    animation: preloader-failsafe 0.2s ease-out 1.5s forwards !important;
+  }
+  .preloader.is-controlled {
+    animation: none !important;
   }
 }

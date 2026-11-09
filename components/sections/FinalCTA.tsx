@@ -1,6 +1,6 @@
 import { Panel } from "@/components/layout/Panel";
 import { Reveal } from "@/components/layout/Reveal";
-import { whatsappLink } from "@/lib/content";
+import { whatsappLink } from "@/lib/site-config";
 
 export function FinalCTA() {
   return (
@@ -18,7 +18,7 @@ export function FinalCTA() {
         <Reveal delay={0.2}>
           <a
             href="#oferta"
-            className="mt-9 inline-block rounded-full bg-white px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider text-ink transition-transform hover:scale-[1.02]"
+            className="mt-9 inline-block rounded-full btn-on-dark px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider  transition-transform hover:scale-[1.02]"
           >
             Quero começar agora
           </a>
@@ -30,14 +30,20 @@ export function FinalCTA() {
             <p className="mt-2 font-sans text-base text-bastidor-text-soft">
               Estamos prontos para responder qualquer pergunta.
             </p>
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-wider text-bastidor-text underline underline-offset-4"
-            >
-              Chamar no WhatsApp
-            </a>
+            {whatsappLink() ? (
+              <a
+                href={whatsappLink()!}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-wider text-bastidor-text underline underline-offset-4"
+              >
+                Chamar no WhatsApp
+              </a>
+            ) : (
+              <p className="mt-4 font-ui text-sm text-bastidor-text" data-pending="whatsapp">
+                [Pendente: número do WhatsApp — lib/site-config.ts]
+              </p>
+            )}
           </div>
         </Reveal>
       </div>

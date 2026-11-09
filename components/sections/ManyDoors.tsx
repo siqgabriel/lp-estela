@@ -6,7 +6,7 @@ export function ManyDoors() {
     <Panel mode="palco-warm" className="border-t border-palco-line">
       <div className="mx-auto max-w-2xl text-center">
         <Reveal>
-          <h2 className="font-display text-4xl text-ink sm:text-5xl">VÁRIAS PORTAS, NÃO UMA SÓ.</h2>
+          <h2 className="font-display text-4xl text-strong sm:text-5xl">VÁRIAS PORTAS, NÃO UMA SÓ.</h2>
         </Reveal>
         <Reveal delay={0.1}>
           <div className="mt-8 space-y-5 font-sans text-lg leading-relaxed text-palco-text-soft">
@@ -24,7 +24,7 @@ export function ManyDoors() {
           </div>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mt-6 font-sans text-xl font-semibold text-ink">
+          <p className="mt-6 font-sans text-xl font-semibold text-strong">
             É isso que os módulos multiplicam, um a um.
           </p>
         </Reveal>

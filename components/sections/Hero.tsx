@@ -30,7 +30,7 @@ export function Hero() {
       <Reveal delay={0.3}>
         <a
           href="#oferta"
-          className="mt-10 inline-block rounded-full bg-white px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider text-ink transition-transform hover:scale-[1.02]"
+          className="mt-10 inline-block rounded-full btn-on-dark px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider  transition-transform hover:scale-[1.02]"
         >
           Quero ganhar visibilidade
         </a>

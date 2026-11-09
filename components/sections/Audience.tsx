@@ -7,7 +7,7 @@ export function Audience() {
     <Panel mode="palco" className="border-t border-palco-line">
       <div className="grid gap-10 sm:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <h2 className="font-display text-4xl text-ink sm:text-5xl">PRA QUEM É.</h2>
+          <h2 className="font-display text-4xl text-strong sm:text-5xl">PRA QUEM É.</h2>
           <p className="mt-5 max-w-sm font-sans text-base text-palco-text-soft">
             Para atores e atrizes, maiores de 18 anos, estudantes ou profissionais de artes
             dramáticas com experiência em teatro e/ou audiovisual, que:
@@ -18,13 +18,13 @@ export function Audience() {
             {audienceQualifiers.map((item) => (
               <li
                 key={item}
-                className="border-t border-palco-line pt-4 font-sans text-base leading-snug text-ink first:border-t-0 first:pt-0"
+                className="border-t border-palco-line pt-4 font-sans text-base leading-snug text-strong first:border-t-0 first:pt-0"
               >
                 {item}
               </li>
             ))}
           </ul>
-          <p className="mt-6 font-sans text-xl font-semibold text-ink">
+          <p className="mt-6 font-sans text-xl font-semibold text-strong">
             Se isso te descreve, o Método Gestão foi construído pra você.
           </p>
         </Reveal>

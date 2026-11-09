@@ -6,14 +6,14 @@ export function Deliverables() {
   return (
     <Panel mode="palco-warm" className="border-t border-palco-line">
       <Reveal>
-        <h2 className="font-display text-4xl text-ink sm:text-5xl">TUDO QUE VAI ESTAR NAS SUAS MÃOS.</h2>
+        <h2 className="font-display text-4xl text-strong sm:text-5xl">TUDO QUE VAI ESTAR NAS SUAS MÃOS.</h2>
       </Reveal>
 
       <Reveal delay={0.08}>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {deliverables.map((d) => (
-            <div key={d.label} className="border-t-2 border-ink pt-4">
-              <p className="font-display text-2xl text-ink">{d.label}</p>
+            <div key={d.label} className="border-t-2 border-strong pt-4">
+              <p className="font-display text-2xl text-strong">{d.label}</p>
               <p className="mt-1 font-sans text-sm text-palco-text-soft">{d.desc}</p>
             </div>
           ))}

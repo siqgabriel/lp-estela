@@ -6,7 +6,7 @@ export function CommandOrReact() {
     <Panel mode="palco-warm">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <h2 className="font-display text-4xl text-ink sm:text-5xl lg:text-6xl">
+          <h2 className="font-display text-4xl text-strong sm:text-5xl lg:text-6xl">
             COMANDAR A CARREIRA OU SÓ REAGIR A ELA.
           </h2>
         </Reveal>
@@ -26,7 +26,7 @@ export function CommandOrReact() {
           </div>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mx-auto mt-8 max-w-xl font-sans text-xl font-semibold text-ink">
+          <p className="mx-auto mt-8 max-w-xl font-sans text-xl font-semibold text-strong">
             É exatamente essa mudança de postura — de reativa pra ativa — que o curso treina, passo
             a passo.
           </p>

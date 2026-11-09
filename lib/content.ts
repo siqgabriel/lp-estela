@@ -197,5 +197,3 @@ export const pricing = {
   installments: "ou R$ 497 em 12x",
 } as const;
 
-/** Pendência 10.6 do documento de proposta — substituir pelo número real antes de publicar. */
-export const whatsappLink = "https://wa.me/55XXXXXXXXXXX";

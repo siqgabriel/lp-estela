@@ -17,10 +17,34 @@ import { Guarantee } from "@/components/sections/Guarantee";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { FAQ } from "@/components/sections/FAQ";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { siteConfig } from "@/lib/site-config";
+
+/** Dados estruturados: só fatos do PDF (nome, descrição, autora, preço à vista, curso online). */
+const courseJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: "Gestão de Carreira",
+  description: siteConfig.description,
+  inLanguage: "pt-BR",
+  url: siteConfig.url,
+  provider: { "@type": "Person", name: siteConfig.author },
+  offers: {
+    "@type": "Offer",
+    category: "Paid",
+    price: "442",
+    priceCurrency: "BRL",
+    url: siteConfig.url,
+  },
+  hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
+};
 
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Hero />
       <PainIntro />
       <CostOfFitting />

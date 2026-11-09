@@ -8,7 +8,7 @@ export function Method() {
   return (
     <Panel mode="palco" className="border-t border-palco-line">
       <Reveal>
-        <h2 className="max-w-3xl font-display text-4xl text-ink sm:text-5xl">
+        <h2 className="max-w-3xl font-display text-4xl text-strong sm:text-5xl">
           O CAMINHO DE QUEM DEIXA DE ESPERAR E COMEÇA A CONDUZIR.
         </h2>
         <p className="mt-5 max-w-xl font-sans text-lg text-palco-text-soft">
@@ -20,7 +20,7 @@ export function Method() {
       <div className="mt-14 space-y-12">
         {moduleGroups.map((group, groupIndex) => (
           <Reveal key={group.group} delay={groupIndex * 0.04}>
-            <h3 className="font-ui text-xs font-semibold uppercase tracking-widest text-violet">
+            <h3 className="font-ui text-xs font-semibold uppercase tracking-widest text-accent">
               {group.group}
             </h3>
             <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -29,8 +29,8 @@ export function Method() {
                 const n = String(counter).padStart(2, "0");
                 return (
                   <div key={item.title} className="border-t border-palco-line pt-4">
-                    <span className="font-display text-2xl text-violet">{n}</span>
-                    <h4 className="mt-1 font-sans text-lg font-semibold text-ink">{item.title}</h4>
+                    <span className="font-display text-2xl text-accent">{n}</span>
+                    <h4 className="mt-1 font-sans text-lg font-semibold text-strong">{item.title}</h4>
                     <p className="mt-1 font-sans text-sm leading-snug text-palco-text-soft">
                       {item.desc}
                     </p>
@@ -45,7 +45,7 @@ export function Method() {
       <Reveal delay={0.1}>
         <a
           href="#oferta"
-          className="mt-14 inline-block rounded-full bg-ink px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider text-white transition-transform hover:scale-[1.02]"
+          className="mt-14 inline-block rounded-full btn-on-field px-8 py-4 font-ui text-sm font-semibold uppercase tracking-wider  transition-transform hover:scale-[1.02]"
         >
           Quero conhecer o método
         </a>

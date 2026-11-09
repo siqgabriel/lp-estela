@@ -24,3 +24,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# fotos da Estela: só entram no git depois da aprovação dela (ver CLAUDE.md)
+/public/img/photo/estela/*
+!/public/img/photo/estela/.gitkeep
+
+# playwright
+/test-results/
+/playwright-report/
+/.next-test/

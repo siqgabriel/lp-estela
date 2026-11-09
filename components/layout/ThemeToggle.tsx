@@ -31,7 +31,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={theme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"}
       aria-pressed={theme === "dark"}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-current/20 text-current transition-colors hover:border-current/50"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/20 text-current transition-colors hover:border-current/50"
     >
       {theme === "dark" ? (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
