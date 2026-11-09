@@ -12,20 +12,20 @@ import { MarketClarityMotion } from "./MarketClarityMotion";
 export function MarketClarity() {
   return (
     <section id="clareza" data-section="4" className="relative isolate overflow-hidden bg-paper text-paper-ink">
-      <h2 className={`${GUTTER} flex flex-col-reverse gap-4 pt-16 lg:flex-row lg:items-end lg:justify-between lg:gap-[3vw] lg:pt-[7vw]`}>
+      <h2 className={`${GUTTER} flex flex-col gap-4 pt-[var(--space-section)] lg:flex-row-reverse lg:items-end lg:justify-between lg:gap-[3vw]`}>
+        <span className="block text-right lg:pb-[1.6vw]">
+          <span className={`${LEAD} text-paper-accent`}>{marketClarity.lead}</span>
+          <span className={`${IMPACT} mt-[0.12em]`}>{marketClarity.impact}</span>
+        </span>
         <PhotoWord
           word={marketClarity.word}
           photo={photos.ft8}
           position="50% 50%"
           className={`clareza-word ${MONUMENTAL} text-[30vw] lg:text-[14vw]`}
         />
-        <span className="block text-right lg:pb-[1.6vw]">
-          <span className={`${LEAD} text-paper-accent`}>{marketClarity.lead}</span>
-          <span className={`${IMPACT} mt-[0.12em]`}>{marketClarity.impact}</span>
-        </span>
       </h2>
 
-      <div className={`${GUTTER} grid gap-6 bg-paper-ink py-12 text-paper lg:grid-cols-12 lg:gap-[3vw] lg:py-[4vw]`}>
+      <div className={`${GUTTER} grid gap-6 bg-paper-ink pt-12 pb-[max(var(--space-block),96px)] text-paper lg:grid-cols-12 lg:gap-[3vw] lg:py-[var(--space-block)]`}>
         <p className="font-sans text-[17px] leading-relaxed font-medium lg:col-span-5 lg:text-[18px]">
           {marketClarity.paragraphs[0]}
         </p>

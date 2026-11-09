@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { createMotion, gsap, MOTION_OK, MOTION_REDUCED } from "@/lib/motion";
+import { createMotion, gsap } from "@/lib/motion";
 import { setScrollLocked } from "@/lib/scroll";
 
 /** Teto de espera: a entrada nunca fica presa além disso. */
@@ -14,7 +14,7 @@ const DRAW_S = 1.3;
  * - aparece em todo carregamento e refresh (nada em storage);
  * - sai quando as fontes estão prontas, o `load` aconteceu e o traço terminou,
  *   com teto de MAX_WAIT_MS;
- * - movimento reduzido: sem traço animado, crossfade curto;
+ * - movimento reduzido não altera o preloader (só efeitos de rolagem são desligados);
  * - sem JS: a animação CSS `.preloader` (globals.css) remove o overlay sozinha.
  */
 export function Preloader() {
@@ -46,16 +46,10 @@ export function Preloader() {
     const fontsReady = document.fonts?.ready.then(() => undefined) ?? Promise.resolve();
 
     const mm = createMotion();
-    mm.add({ ok: MOTION_OK, reduced: MOTION_REDUCED }, (context) => {
-      const { reduced } = context.conditions as { ok: boolean; reduced: boolean };
+    mm.add("all", () => {
       const length = star.getTotalLength();
 
       const drawn = new Promise<void>((resolve) => {
-        if (reduced) {
-          gsap.set(star, { strokeDasharray: "none", strokeDashoffset: 0 });
-          resolve();
-          return;
-        }
         gsap.fromTo(
           star,
           { strokeDasharray: length, strokeDashoffset: length },
@@ -68,7 +62,7 @@ export function Preloader() {
         finished = true;
         gsap.to(root, {
           opacity: 0,
-          duration: reduced ? 0.2 : 0.5,
+          duration: 0.5,
           ease: "power2.out",
           onComplete: done,
         });

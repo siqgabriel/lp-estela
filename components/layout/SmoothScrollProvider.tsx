@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
-import { createMotion, gsap, MOTION_OK, ScrollTrigger } from "@/lib/motion";
+import { gsap, registerGsap, ScrollTrigger } from "@/lib/motion";
 import { registerLenis } from "@/lib/scroll";
 
 /** O skip link fica com o comportamento nativo, que também move o foco. */
@@ -10,17 +10,17 @@ const SKIP_LINK = "#conteudo";
 
 /**
  * Lenis como driver único de scroll, alimentando o ScrollTrigger.
- * - Movimento reduzido: não inicia o Lenis (scroll nativo; âncoras usam scroll-padding-top).
+ * - Sempre ligado, inclusive com movimento reduzido (regra do cliente, ver CLAUDE.md).
+ *   lerp 0.07: sensação próxima do ScrollSmoother "smooth: 2" do Davies.
  * - O callback do ticker é removido no cleanup e o lagSmoothing é restaurado.
  * - Âncoras passam pelo Lenis; o offset do header fixo vem de scroll-padding-top (--header-h).
  * - ScrollTrigger.refresh após fontes, load e abertura/fechamento de <details>.
  */
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const mm = createMotion();
-
-    mm.add(MOTION_OK, () => {
-      const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    registerGsap();
+    const setup = () => {
+      const lenis = new Lenis({ lerp: 0.07, smoothWheel: true, respectReducedMotion: false });
       lenis.on("scroll", ScrollTrigger.update);
 
       const tick = (time: number) => lenis.raf(time * 1000);
@@ -55,18 +55,29 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         registerLenis(null);
         lenis.destroy();
       };
-    });
+    };
+    const teardown = setup();
 
     const refresh = () => ScrollTrigger.refresh();
     document.fonts?.ready.then(refresh);
     if (document.readyState !== "complete") window.addEventListener("load", refresh, { once: true });
     // "toggle" não borbulha: captura no documento cobre todos os <details>.
     document.addEventListener("toggle", refresh, true);
+    // A saída do preloader libera o scroll (o Lenis tira o overflow: clip no quadro seguinte);
+    // recalcula as posições depois disso.
+    let lateRefresh = 0;
+    const refreshAfterUnlock = () => {
+      window.clearTimeout(lateRefresh);
+      lateRefresh = window.setTimeout(refresh, 150);
+    };
+    window.addEventListener("gc:preloader-done", refreshAfterUnlock);
 
     return () => {
       document.removeEventListener("toggle", refresh, true);
+      window.removeEventListener("gc:preloader-done", refreshAfterUnlock);
+      window.clearTimeout(lateRefresh);
       window.removeEventListener("load", refresh);
-      mm.revert();
+      teardown();
     };
   }, []);
 

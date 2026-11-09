@@ -1,5 +1,6 @@
 import { faqItems, s19 } from "@/lib/content";
 import { GUTTER, Title } from "@/components/system/type";
+import { FrameLabel } from "@/components/system/refine";
 
 /**
  * Seção 19 — página cheia branca. Título fixo à esquerda no desktop; perguntas com
@@ -7,8 +8,9 @@ import { GUTTER, Title } from "@/components/system/type";
  */
 export function FAQ() {
   return (
-    <section data-section="19" className="bg-field text-strong">
-      <div className={`${GUTTER} grid gap-10 py-20 lg:grid-cols-12 lg:gap-[3vw] lg:py-[8vw]`}>
+    <section data-section="19" className="relative bg-field text-strong">
+      <FrameLabel className="top-7 right-5 text-accent sm:right-8 lg:right-[4vw]">100% ONLINE · 1 ANO DE ACESSO · ATÉ 12X</FrameLabel>
+      <div className={`${GUTTER} grid gap-10 pad-section lg:grid-cols-12 lg:gap-[3vw]`}>
         <Title
           lead={s19.lead}
           impact={s19.impact}

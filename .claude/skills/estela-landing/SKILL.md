@@ -24,8 +24,9 @@ Toda copy vem de `content/PAGINA DE VENDAS_PERPETUO GESTAO_21-08-26.pdf` e mora 
 - Lenis fica pausado enquanto o preloader está visível.
 - `ScrollTrigger.refresh()` depois de `document.fonts.ready` e do carregamento das imagens acima da dobra; de novo quando um `details` do FAQ abre ou fecha.
 - **Movimento reduzido em um único ponto**: `gsap.matchMedia()` em `lib/motion.ts`, que registra os plugins uma vez. Componentes não leem `prefers-reduced-motion` por conta própria. A página é desenhada completa no estado final; o movimento é camada adicional.
+- **Regra do movimento reduzido**: Lenis e trilha do cursor ficam sempre ligados. A preferência desliga só pin, paralaxe e animações atreladas à rolagem (`SCROLL_FX` em `lib/motion.ts`).
 - SplitText só em títulos curtos (até cerca de 8 palavras), por linha ou palavra, com `revert()` ao terminar.
-- Um único pin na página: seção 7, só no desktop. Pin novo exige aprovação do cliente. No celular: sem pin e sem paralaxe contínua.
+- Dois pins autorizados, só no desktop: seção 7 e seção 8 (cartões empilhados). Pin novo exige aprovação do cliente. No celular: sem pin e sem paralaxe contínua.
 - Fade e slide-up não são o padrão: o movimento desloca o eixo, abre máscaras e muda escala.
 
 ## Cursor trail (Canvas)
@@ -36,7 +37,8 @@ Implementação própria, inspirada na referência Davies mas sem copiar código
 - Linha fina desenhada como spline suave (não segmentos retos), com suavização baseada em tempo (independente de FPS) e dissipação pela idade de cada ponto.
 - Cor pela zona sob o ponteiro: ink sobre campo branco, branco sobre ink. Sem `mix-blend-mode`.
 - O loop de `requestAnimationFrame` para quando o rastro some e quando a aba fica em background (`visibilitychange`).
-- **Não montar** (nem o canvas, nem listeners) em `pointer: coarse` ou com movimento reduzido.
+- **Não montar** (nem o canvas, nem listeners) sem ponteiro fino (`any-pointer: fine`). Movimento reduzido não desliga a trilha.
+- Estilo Davies: rastro curto com gradiente (transparente → cor da zona) e anel que se expande no clique.
 - Nunca bloquear cliques, scroll ou seleção de texto.
 
 ## Preloader

@@ -75,7 +75,8 @@ export function Cta({
   className?: string;
 }) {
   const colors =
-    tone === "dark" ? "bg-paper text-paper-ink" : tone === "block" ? "bg-field text-strong" : "btn-on-field";
+    // Utilitários (não a classe .btn-on-field) para que variantes lg: possam sobrescrever.
+    tone === "dark" ? "bg-paper text-paper-ink" : tone === "block" ? "bg-field text-strong" : "bg-strong text-field";
   return (
     <a
       href={href}

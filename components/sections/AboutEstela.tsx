@@ -4,7 +4,8 @@ import Image from "next/image";
 import { s14 } from "@/lib/content";
 import { PhotoPlaceholder, photoToneClass } from "@/components/media/Photo";
 import { estelaPhotos } from "@/lib/photos";
-import { GUTTER, IMPACT, LEAD, NUMERAL } from "@/components/system/type";
+import { FrameLabel } from "@/components/system/refine";
+import { GUTTER, IMPACT, LEAD, MONUMENTAL, NUMERAL } from "@/components/system/type";
 
 /**
  * Foto da Estela: arquivo local em public/img/photo/estela/ (fora do git até a aprovação dela).
@@ -14,25 +15,42 @@ const estela = estelaPhotos.sentada;
 const estelaAvailable = fs.existsSync(path.join(process.cwd(), "public", estela.src));
 
 /**
- * Seção 14 — eixo horizontal: ink em cima, faixa branca na base. Estela recortada
- * encosta na borda direita e atravessa a faixa, como nos fechamentos dos carrosséis.
- * Os anos (2002, 2012) aparecem como numerais ao lado dos parágrafos (decorativos; o texto
- * do PDF segue integral).
+ * Seção 14 — Estela entre as letras do próprio nome (técnica do hero da version-2 do Davies):
+ * ESTELA ALBANI cheio atrás do retrato e o mesmo nome vazado por cima, de modo que as letras
+ * continuam legíveis sobre a foto. Eixo horizontal: ink em cima, faixa branca na base,
+ * que o retrato atravessa. No celular: nome em duas linhas, sem sobreposição.
  */
 export function AboutEstela() {
+  const fullName = `${s14.name[0]} ${s14.name[1]}`;
   return (
     <section data-section="14" className="relative isolate flex flex-col overflow-hidden bg-ink-band text-paper lg:block">
-      <div className={`${GUTTER} relative z-10 order-1 pt-20 pb-10 lg:w-[62%] lg:pt-[7vw] lg:pb-[4vw]`}>
+      <FrameLabel className="top-7 left-5 z-30 text-lilac sm:left-8 lg:left-[4vw]">
+        25 ANOS · DIREÇÃO DE ELENCO · PRODUÇÃO CULTURAL · MENTORIA DE CARREIRA ARTÍSTICA
+      </FrameLabel>
+
+      <div className={`${GUTTER} relative order-1 pt-[var(--space-section)]`}>
         <h2>
-          <span className={`${LEAD} text-lilac`}>{s14.lead}</span>
-          <span className={IMPACT}>
+          <span className={`${LEAD} relative z-30 text-lilac`}>{s14.lead}</span>
+          {/* Celular: nome em duas linhas */}
+          <span className={`${IMPACT} lg:hidden`}>
             {s14.name[0]}
             <br />
             {s14.name[1]}
           </span>
+          {/* Desktop: nome cheio (atrás do retrato) */}
+          <span className={`${MONUMENTAL} relative z-0 hidden lg:block lg:text-[13vw]`}>{fullName}</span>
         </h2>
+        {/* Desktop: o mesmo nome vazado, por cima do retrato (decorativo) */}
+        <span
+          aria-hidden="true"
+          className={`${MONUMENTAL} word-outline pointer-events-none absolute right-0 bottom-0 left-0 z-20 hidden px-[4vw] tracking-[0.01em] [clip-path:inset(0_17vw_0_49vw)] lg:block lg:text-[13vw]`}
+        >
+          {fullName}
+        </span>
+      </div>
 
-        <div className="mt-10 space-y-5 font-sans text-[17px] leading-relaxed lg:text-[18px]">
+      <div className={`${GUTTER} relative z-30 order-1 pt-10 pb-10 lg:w-[47%] lg:pt-[var(--space-block)] lg:pb-[var(--space-block)]`}>
+        <div className="space-y-5 font-sans text-[17px] leading-relaxed lg:text-[18px]">
           {s14.paragraphs.map((p) => {
             const year = p.match(/^Em (\d{4})/)?.[1];
             return (
@@ -47,20 +65,24 @@ export function AboutEstela() {
         </div>
       </div>
 
-      <div className="relative z-10 order-3 bg-paper text-paper-ink">
-        <p className={`${GUTTER} py-10 font-sans text-xl leading-snug font-bold lg:w-[62%] lg:py-[3vw] lg:text-[22px]`}>
+      <div className="relative z-30 order-3 bg-paper text-paper-ink">
+        <p className={`${GUTTER} py-10 font-sans text-xl leading-snug font-bold lg:w-[47%] lg:py-[3vw] lg:text-[22px]`}>
           {s14.closing}
         </p>
       </div>
 
-      <div className="relative z-20 order-2 mx-auto w-[78%] max-w-[420px] lg:absolute lg:right-[3vw] lg:bottom-0 lg:z-20 lg:mt-0 lg:w-[30vw] lg:max-w-none">
+      {/* Retrato: entre o nome cheio (z-0) e o nome vazado (z-20); atravessa a faixa branca. */}
+      <div
+        data-cursor="photo"
+        className="relative z-20 order-2 mx-auto w-[78%] max-w-[420px] lg:absolute lg:top-[calc(var(--space-section)+1.2vw)] lg:right-[17vw] lg:z-10 lg:mt-0 lg:w-[34vw] lg:max-w-none"
+      >
         {estelaAvailable ? (
           <Image
             src={estela.src}
             alt={estela.alt}
             width={estela.width}
             height={estela.height}
-            sizes="(min-width: 1024px) 30vw, 78vw"
+            sizes="(min-width: 1024px) 34vw, 78vw"
             className={`h-auto w-full ${photoToneClass(estela)}`}
           />
         ) : (

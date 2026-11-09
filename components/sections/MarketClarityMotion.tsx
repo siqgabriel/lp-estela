@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { createMotion, gsap, MOTION_OK } from "@/lib/motion";
+import { createMotion, gsap, SCROLL_FX } from "@/lib/motion";
 
 /** A foto desliza devagar dentro das letras enquanto a seção passa. Só com movimento permitido. */
 export function MarketClarityMotion() {
@@ -10,7 +10,7 @@ export function MarketClarityMotion() {
     const word = section?.querySelector<HTMLElement>(".clareza-word");
     if (!section || !word) return;
     const mm = createMotion();
-    mm.add(MOTION_OK, () => {
+    mm.add(SCROLL_FX, () => {
       gsap.fromTo(
         word,
         { backgroundPosition: "50% 38%" },

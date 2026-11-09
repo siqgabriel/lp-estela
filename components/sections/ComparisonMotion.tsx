@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { createMotion, DESKTOP, gsap, MOTION_OK } from "@/lib/motion";
+import { createMotion, DESKTOP, gsap, SCROLL_FX } from "@/lib/motion";
 
 /**
- * Único pin da página (aprovado para a seção 7, só no desktop).
+ * Pin da seção 7 (um dos dois autorizados, só no desktop).
  * Enquanto a seção fica presa, o eixo avança de 54% para 46% — o bloco "decidindo"
  * ganha espaço sobre "reagindo" — e os pares entram em sequência. Os textos têm
  * margem interna maior que o curso do eixo, então nunca ficam sob o bloco.
@@ -17,7 +17,7 @@ export function ComparisonMotion() {
     if (!section || !pin) return;
     const mm = createMotion();
 
-    mm.add(`${MOTION_OK} and ${DESKTOP}`, () => {
+    mm.add(`${SCROLL_FX} and ${DESKTOP}`, () => {
       const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 72;
       if (pin.offsetHeight > window.innerHeight - header) return;
 
@@ -29,6 +29,8 @@ export function ComparisonMotion() {
           end: "+=80%",
           pin: true,
           scrub: 0.6,
+          // Recalcula antes do pin da seção 8, que depende do espaço criado por este.
+          refreshPriority: 2,
         },
       });
       tl.fromTo(section, { "--cut": "54%" }, { "--cut": "46%", ease: "none", duration: 1 }, 0)

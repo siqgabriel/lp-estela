@@ -7,7 +7,7 @@ export function Questions() {
   const wa = whatsappLink();
   return (
     <section id="duvidas" data-section="18" className="border-t border-rule bg-field text-strong">
-      <div className={`${GUTTER} grid gap-8 py-14 lg:grid-cols-12 lg:items-center lg:gap-[3vw] lg:py-[4vw]`}>
+      <div className={`${GUTTER} grid gap-8 pad-section lg:grid-cols-12 lg:items-center lg:gap-[3vw]`}>
         <h2 className={`${IMPACT} lg:col-span-6`}>{s18.impact}</h2>
         <div className="lg:col-span-5 lg:col-start-8">
           <Prose paragraphs={s18.paragraphs} />

@@ -1,6 +1,7 @@
 import { s11, testimonials, testimonialVideoNames } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 import { GUTTER, Title } from "@/components/system/type";
+import { FrameLabel } from "@/components/system/refine";
 
 /**
  * Seção 11 — página cheia ink, só tipográfica (sem foto de banco perto das citações).
@@ -8,8 +9,11 @@ import { GUTTER, Title } from "@/components/system/type";
  */
 export function SocialProof() {
   return (
-    <section data-section="11" className="bg-ink-band-deep text-paper">
-      <div className={`${GUTTER} py-20 lg:py-[8vw]`}>
+    <section data-section="11" className="relative bg-ink-band-deep text-paper">
+      <FrameLabel className="top-7 right-5 text-right text-lilac sm:right-8 lg:right-[4vw]">
+        JULIA MARQUES · SAMUEL GIACOMELLI · ILCA ANGELA · CAROLINA VILELA
+      </FrameLabel>
+      <div className={`${GUTTER} pad-section`}>
         <Title lead={s11.lead} impact={s11.impact} leadClass="text-lilac" />
 
         <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-[3vw]">

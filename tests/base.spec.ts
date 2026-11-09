@@ -35,7 +35,7 @@ async function contrastFailures(page: Page) {
       }
       return false;
     };
-    const bgOf = (el: Element): number[] => {
+    const bgOf = (el: Element): number[] | null => {
       const fixedText = isFixedLayer(el);
       el.scrollIntoView({ block: "center" });
       // Amostra sob o primeiro trecho de texto (não no início da caixa, que pode estar do outro lado do eixo).
@@ -43,7 +43,11 @@ async function contrastFailures(page: Page) {
       const range = document.createRange();
       range.selectNodeContents(textNode);
       const r = range.getClientRects()[0] ?? el.getBoundingClientRect();
-      const stack = document.elementsFromPoint(r.left + Math.min(r.width / 2, 12), r.top + r.height / 2);
+      const px = r.left + Math.min(r.width / 2, 12);
+      const py = r.top + r.height / 2;
+      // Fora da tela (ex.: texto de faixa infinita em movimento): não há como amostrar.
+      if (px < 0 || px > window.innerWidth || py < 0 || py > window.innerHeight) return null;
+      const stack = document.elementsFromPoint(px, py);
       for (const n of stack) {
         if (n.tagName === "CANVAS" || (!fixedText && isFixedLayer(n))) continue;
         const p = parse(getComputedStyle(n).backgroundColor);
@@ -67,6 +71,7 @@ async function contrastFailures(page: Page) {
       if (cs.webkitTextFillColor === "rgba(0, 0, 0, 0)") continue;
       const fg = parse(cs.color);
       const bg = bgOf(el);
+      if (!bg) continue;
       const alpha = fg[3];
       const mixed = fg.slice(0, 3).map((v, i) => v * alpha + bg[i] * (1 - alpha));
       const l1 = lum(mixed);
@@ -89,6 +94,10 @@ test.describe("tema e contraste", () => {
       await page.goto("/");
       await waitPreloaderGone(page);
       await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+      // Espera a passagem preloader → hero terminar (o bloco recua até 64%).
+      await expect
+        .poll(() => page.locator("#hero").evaluate((el) => getComputedStyle(el).getPropertyValue("--cut").trim()))
+        .toBe("64%");
       expect(await contrastFailures(page)).toEqual([]);
     });
   }
@@ -107,7 +116,7 @@ test("sem JavaScript o conteúdo aparece e o preloader some", async ({ browser }
 test.describe("movimento reduzido", () => {
   test.use({ reducedMotion: "reduce" });
 
-  test("preloader não anima o traço e sai rápido; sem cursor trail nem Lenis", async ({ page }) => {
+  test("regra nova: Lenis e trilha seguem ligados; o preloader sai", async ({ page }, info) => {
     // Amostra o traço da estrela a cada 30 ms enquanto o preloader existe.
     await page.addInitScript(() => {
       const w = window as unknown as { __dash: string[] };
@@ -122,11 +131,10 @@ test.describe("movimento reduzido", () => {
     await waitPreloaderGone(page);
     const samples = await page.evaluate(() => (window as unknown as { __dash: string[] }).__dash);
     expect(samples.length).toBeGreaterThan(0);
-    // Antes da hidratação o SVG ainda não tem dasharray ("none"); depois, o modo reduzido o mantém "none".
-    expect(samples.filter((s) => s !== "none")).toEqual([]);
+    await expect(page.locator("html")).toHaveClass(/lenis/);
     await page.mouse.move(200, 200);
-    await expect(page.locator("canvas")).toHaveCount(0);
-    await expect(page.locator("html")).not.toHaveClass(/lenis/);
+    await page.mouse.move(260, 240, { steps: 4 });
+    await expect(page.locator("canvas")).toHaveCount(info.project.name === "mobile-390" ? 0 : 1);
   });
 });
 

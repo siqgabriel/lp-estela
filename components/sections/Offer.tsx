@@ -1,6 +1,7 @@
 import { s15 } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 import { Cta, GUTTER, IMPACT, LEAD, MONUMENTAL } from "@/components/system/type";
+import { FrameLabel } from "@/components/system/refine";
 
 /**
  * Seção 15 — eixo vertical (58%). Campo: nome do produto e o preço monumental, inteiro do
@@ -11,7 +12,8 @@ export function Offer() {
   const checkout = siteConfig.checkoutUrl;
   return (
     <section id="oferta" data-section="15" className="relative isolate grid bg-field text-strong lg:grid-cols-[58%_1fr]">
-      <div className={`${GUTTER} pt-20 pb-10 lg:py-[7vw]`}>
+      <FrameLabel className="top-7 left-5 text-accent sm:left-8 lg:left-[4vw]">12 MÓDULOS · 1 ANO DE ACESSO · 7 DIAS DE GARANTIA</FrameLabel>
+      <div className={`${GUTTER} pt-[var(--space-section)] pb-10 lg:pb-[var(--space-section)]`}>
         <h2>
           <span className={`${LEAD} text-accent`}>{s15.lead}</span>
           <span className={`${IMPACT} mt-1`}>{s15.product}</span>
@@ -22,7 +24,7 @@ export function Offer() {
         </p>
       </div>
 
-      <div className={`${GUTTER} pb-20 lg:flex lg:flex-col lg:justify-end lg:bg-block lg:py-[7vw] lg:text-on-block`}>
+      <div className={`${GUTTER} pb-[var(--space-section)] lg:flex lg:flex-col lg:justify-end lg:bg-block lg:pt-[var(--space-section)] lg:text-on-block`}>
         <p className={`${LEAD} lg:text-[clamp(30px,2.6vw,42px)]`}>{s15.installments}</p>
         <p className="mt-6 max-w-[44ch] font-sans text-[17px] leading-relaxed font-bold lg:text-[18px]">{s15.included}</p>
         <Cta href={checkout ?? "#oferta"} tone="field" className="mt-8 w-full lg:bg-field lg:text-strong">

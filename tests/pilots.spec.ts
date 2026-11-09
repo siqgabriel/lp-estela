@@ -48,13 +48,14 @@ test("foto em letra: ft8 otimizada pelo Next, P&B pelo manifesto", async ({ page
   expect(bgColor).toBe("rgb(255, 255, 255)");
 });
 
-test("pin: só a seção 7, só no desktop", async ({ page }, info) => {
+test("pins: seções 7 e 8, só no desktop", async ({ page }, info) => {
   await ready(page);
   await scrollToSelector(page, "#duas-formas");
   const spacers = await page.locator(".pin-spacer").count();
   if (info.project.name === "desktop-1440") {
-    expect(spacers).toBe(1);
+    expect(spacers).toBe(2);
     await expect(page.locator(".pin-spacer #duas-formas")).toHaveCount(1);
+    await expect(page.locator(".pin-spacer .method-pin")).toHaveCount(1);
   } else {
     expect(spacers).toBe(0);
   }
@@ -64,8 +65,9 @@ test.describe("movimento reduzido", () => {
   test.use({ reducedMotion: "reduce" });
   test("estado final sem animação: eixo no lugar e nenhum pin", async ({ page }, info) => {
     await ready(page);
-    const cut = await page.locator("#hero").evaluate((el) => getComputedStyle(el).getPropertyValue("--cut").trim());
-    expect(cut).toBe("64%");
+    await expect
+      .poll(() => page.locator("#hero").evaluate((el) => getComputedStyle(el).getPropertyValue("--cut").trim()))
+      .toBe("64%");
     await scrollToSelector(page, "#duas-formas");
     await expect(page.locator(".pin-spacer")).toHaveCount(0);
     expect(info.project.name).toBeTruthy();

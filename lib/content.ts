@@ -396,3 +396,13 @@ export const s18 = {
 
 /** "FAQ - PERGUNTAS FREQUENTES": a quebra de linha substitui o hífen separador. */
 export const s19 = { lead: "FAQ", impact: "PERGUNTAS FREQUENTES" } as const;
+
+/** Faixas infinitas (texto do PDF: títulos dos módulos e itens da oferta). */
+export const marqueeModules = moduleGroups.flatMap((g) => g.items.map((i) => i.title.toUpperCase()));
+export const marqueeOffer = [
+  "12 MÓDULOS",
+  "+150 AULAS GRAVADAS",
+  "1 ANO DE ACESSO",
+  "SUPORTE VIA CHAT DA PLATAFORMA",
+  "7 DIAS DE GARANTIA",
+] as const;

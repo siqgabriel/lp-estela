@@ -33,3 +33,6 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /.next-test/
+
+# templates de referência licenciados (não versionar)
+/_ref/

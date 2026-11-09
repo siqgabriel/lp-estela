@@ -18,6 +18,8 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Questions } from "@/components/sections/Questions";
 import { FAQ } from "@/components/sections/FAQ";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { Marquee } from "@/components/system/refine";
+import { marqueeModules, marqueeOffer } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
 /** Dados estruturados: só fatos do PDF (nome, descrição, autora, preço à vista, curso online). */
@@ -53,6 +55,7 @@ export default function Home() {
       <LivingUncertainty />
       <CommandOrReact />
       <ComparisonTable />
+      <Marquee items={marqueeModules} className="bg-ink-band-deep py-5 text-[clamp(28px,3.2vw,52px)] text-paper" duration={55} />
       <Method />
       <ManyDoors />
       <CulturalProjects />
@@ -60,6 +63,7 @@ export default function Home() {
       <Audience />
       <Deliverables />
       <AboutEstela />
+      <Marquee items={marqueeOffer} reverse className="border-y border-rule bg-field py-5 text-[clamp(28px,3.2vw,52px)] text-strong" duration={45} />
       <Offer />
       <Guarantee />
       <FinalCTA />

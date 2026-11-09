@@ -7,6 +7,7 @@ import { themeInitScript } from "@/components/layout/ThemeToggle";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Preloader } from "@/components/layout/Preloader";
 import { CursorTrail } from "@/components/layout/CursorTrail";
+import { CursorRing } from "@/components/layout/CursorRing";
 import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
 import { CtaDock } from "@/components/layout/CtaDock";
 import { siteConfig } from "@/lib/site-config";
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Preloader />
         <CursorTrail />
+        <CursorRing />
         <SiteHeader />
         <SmoothScrollProvider>
           <main id="conteudo" tabIndex={-1} className="outline-none">

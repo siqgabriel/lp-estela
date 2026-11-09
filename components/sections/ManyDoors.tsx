@@ -10,7 +10,7 @@ import { GUTTER, IMPACT, LEAD, MONUMENTAL, Prose } from "@/components/system/typ
 export function ManyDoors() {
   return (
     <section data-section="9" className="bg-paper text-paper-ink">
-      <div className={`${GUTTER} grid gap-12 py-20 lg:grid-cols-12 lg:gap-[3vw] lg:py-[8vw]`}>
+      <div className={`${GUTTER} grid gap-12 pad-section lg:grid-cols-12 lg:gap-[3vw]`}>
         <h2 className="lg:col-span-6">
           <span className={`${LEAD} text-paper-accent`}>{s9.lead}</span>
           <PhotoWord word={s9.word} photo={photos.ft1} position="50% 40%" className={`${MONUMENTAL} text-[30vw] lg:text-[14vw]`} />

@@ -14,6 +14,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  */
 
 export const MOTION_OK = "(prefers-reduced-motion: no-preference)";
+/**
+ * Efeitos atrelados à rolagem (pin, paralaxe, revelações, texto que se acende).
+ * É a ÚNICA coisa que o movimento reduzido desliga — Lenis e trilha ficam sempre ligados.
+ */
+export const SCROLL_FX = MOTION_OK;
 export const MOTION_REDUCED = "(prefers-reduced-motion: reduce)";
 export const DESKTOP = "(min-width: 1024px)";
 

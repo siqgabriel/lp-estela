@@ -48,6 +48,11 @@
   --palco-line: var(--rule);
 
   --header-h: 72px;
+  /* Escala de espaçamento (base: .flat-spacing do Davies — 120 px em 1440, 80, 60).
+     No celular o mínimo é 96 px para o CTA fixo nunca cobrir o fim de uma seção. */
+  --space-section: clamp(96px, 8.4vw, 140px);
+  --space-block: clamp(40px, 4.2vw, 72px);
+  --space-gap: clamp(24px, 2.2vw, 40px);
   color-scheme: light;
 }
 
@@ -125,6 +130,61 @@
 html {
   scroll-behavior: auto;
   scroll-padding-top: var(--header-h);
+  /* Reserva o espaço da barra: travar o scroll no preloader não muda a largura (e as alturas). */
+  scrollbar-gutter: stable;
+}
+@media (max-width: 1023.98px) {
+  html {
+    scroll-padding-bottom: 88px;
+  }
+}
+
+.pad-section {
+  padding-block: var(--space-section);
+}
+
+/* Microtipografia de moldura: rótulos dos cantos das seções (sempre com informação do PDF). */
+.frame-label {
+  font-family: var(--font-ui), "Inter", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+@media (min-width: 1024px) {
+  .frame-label {
+    font-size: 12px;
+  }
+}
+
+/* Faixa infinita de texto com a estrela do logo como separador. */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.6em;
+  padding-right: 0.6em;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee-star {
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  background: currentColor;
+  -webkit-mask: url("/img/brand/estrela.png") center / contain no-repeat;
+  mask: url("/img/brand/estrela.png") center / contain no-repeat;
+  transform: translateY(-0.06em);
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 html.is-scroll-locked {
@@ -291,6 +351,67 @@ body {
   }
 }
 
+
+/* Anel do cursor: invisível; cresce sobre fotos e vídeo (só ponteiro fino). */
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 61;
+  width: 0;
+  height: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: width 0.45s cubic-bezier(0.215, 0.61, 0.355, 1), height 0.45s cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 0.3s ease, background-color 0.3s ease;
+}
+.cursor-ring[data-mode="photo"] {
+  width: 84px;
+  height: 84px;
+  opacity: 1;
+  backdrop-filter: blur(2px);
+}
+.cursor-ring[data-mode="video"] {
+  width: 116px;
+  height: 116px;
+  opacity: 1;
+  background-color: rgba(31, 21, 57, 0.4);
+  backdrop-filter: blur(4px);
+}
+.cursor-ring-label {
+  font-family: var(--font-ui), "Inter", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.cursor-ring[data-mode="video"] .cursor-ring-label {
+  opacity: 1;
+}
+
+/* Seção 8: cartões empilhados (o JS liga .is-stacked só no desktop com efeitos de rolagem). */
+.stack.is-stacked {
+  position: relative;
+  overflow: hidden;
+}
+.stack.is-stacked > .stack-card {
+  position: absolute;
+  inset: 0 0 auto 0;
+}
+
+/* Foto atravessando a palavra (seção 14): camada vazada por cima do retrato. */
+.word-outline {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.85);
+}
+
 /* Foto dentro da letra (máximo 3 palavras na página; ver CLAUDE.md). */
 .photo-word {
   background-repeat: no-repeat;
@@ -381,17 +502,5 @@ p {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-  .preloader {
-    animation: preloader-failsafe 0.2s ease-out 1.5s forwards !important;
-  }
-  .preloader.is-controlled {
-    animation: none !important;
-  }
-}
+/* Movimento reduzido: só efeitos de rolagem são desligados (SCROLL_FX no JS).
+   Faixas infinitas, preloader e transições de hover seguem ativos (regra do cliente). */

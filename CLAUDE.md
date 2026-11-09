@@ -97,7 +97,11 @@ Estrutura (servida pelo site, tudo em `public/` vai para o ar):
 
 ## Pin de scroll
 
-A página tem **um único pin: a seção 7** (Duas formas de tratar a carreira), só no desktop. Qualquer pin novo precisa de aprovação do cliente antes de ser implementado.
+A página tem **dois pins autorizados**, ambos só no desktop: **seção 7** (Duas formas de tratar a carreira) e **seção 8** (os 5 grupos de módulos como cartões empilhados que deslizam e se sobrepõem). Qualquer pin novo precisa de aprovação do cliente antes de ser implementado.
+
+## Movimento reduzido (regra aprovada em 2026-11-09)
+
+O smooth scroll (Lenis) e a trilha do cursor ficam **sempre ligados**, como na referência Davies, inclusive com `prefers-reduced-motion: reduce`. A preferência desliga **apenas** pin, paralaxe e animações atreladas à rolagem (revelações ao entrar na tela, texto que se acende com o scroll, cartões empilhados). Preloader, passagem do preloader para o hero, faixas infinitas e o anel do cursor seguem ativos. Trilha e anel continuam desligados em touch.
 - **Depoimentos (seção 11)**: só tipográficos até chegarem fotos reais das alunas. Nenhuma foto de banco perto deles.
 - Fotos encostam no eixo e podem atravessar faixas no desktop; no celular ficam contidas.
 
@@ -109,6 +113,16 @@ Servidos de `public/img/brand/`; originais em `brand-assets/logo/`. Atenção: `
 - `logo-estela.png` — quadrado branco com estrela ink vazada + "ESTELA ALBANI", em branco: só sobre fundo escuro.
 - `favicon-dark.png` — estrela branca sólida sobre ink (2063 px; gerar versões otimizadas de 32 e 180 px). `favicon-light.png` está quase invisível e precisa ser refeito.
 - **Nunca aplicar filtro CSS em logo** (o `brightness-0 invert` atual preenche a estrela, que é de contorno). Usar os PNGs atuais sem filtro até chegarem os SVGs, inclusive a versão clara do lockup GC.
+
+## Refino (camada de acabamento, referências Davies e Uniiq em `_ref/`, fora do git)
+
+- Foto atravessando a palavra (técnica do hero da version-2 do Davies): texto cheio atrás do retrato e o mesmo texto vazado por cima. Usada na seção 14 (Estela entre as letras de ESTELA ALBANI).
+- Microtipografia de moldura: rótulos em Inter 11–12 px, caixa alta, espaçamento largo, nos cantos das seções, sempre com informação real do PDF.
+- Faixas infinitas de texto entre seções, com a estrela do logo como separador.
+- Texto que se acende na rolagem em um parágrafo-manifesto (seção 2).
+- Revelação de fotos por máscara com paralaxe leve; galerias assimétricas com legendas nas seções 3 e 10 (cantos secos).
+- Cursor com anel que cresce sobre fotos e vídeo ("ASSISTIR" no vídeo), só em ponteiro fino.
+- Espaçamento: escala baseada no `.flat-spacing` do Davies (120 px em 1440, 80 px, 60 px) — token `--space-section`.
 
 ## Comportamentos aprovados
 

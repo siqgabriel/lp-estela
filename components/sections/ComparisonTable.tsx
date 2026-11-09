@@ -22,7 +22,37 @@ export function ComparisonTable() {
           {comparison.title}
         </h2>
 
-        <table className="comparison-table w-full border-collapse font-sans">
+        {/* Celular: dois blocos consecutivos, numerados 1.–5. para manter os pares. */}
+        <div className="lg:hidden">
+          <div className="bg-field px-5 pb-12 sm:px-8">
+            <h3 className="font-display text-[clamp(28px,8vw,40px)] leading-none font-bold uppercase">{comparison.reactingHeader}</h3>
+            <ol className="mt-6">
+              {comparisonRows.map((row, i) => (
+                <li key={row.reacting} className="grid grid-cols-[2.6rem_1fr] gap-x-3 border-t border-rule py-4">
+                  <span aria-hidden="true" className="font-display text-3xl leading-none font-bold text-numeral">
+                    {i + 1}.
+                  </span>
+                  <span className="font-sans text-[17px] leading-snug">{row.reacting}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="bg-block px-5 py-12 text-on-block sm:px-8">
+            <h3 className="font-display text-[clamp(28px,8vw,40px)] leading-none font-bold uppercase">{comparison.decidingHeader}</h3>
+            <ol className="mt-6">
+              {comparisonRows.map((row, i) => (
+                <li key={row.deciding} className="grid grid-cols-[2.6rem_1fr] gap-x-3 border-t border-on-block/20 py-4">
+                  <span aria-hidden="true" className="font-display text-3xl leading-none font-bold text-on-block-soft">
+                    {i + 1}.
+                  </span>
+                  <span className="font-sans text-[17px] leading-snug font-medium">{row.deciding}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <table className="comparison-table hidden w-full border-collapse font-sans lg:table">
           <caption className="sr-only">
             {comparison.reactingHeader} e {comparison.decidingHeader}
           </caption>
@@ -52,7 +82,7 @@ export function ComparisonTable() {
             <br />
             {comparison.closing[1]}
           </p>
-          <p className="comparison-impact bg-block px-5 py-8 font-display text-[11vw] leading-[0.92] font-bold text-on-block uppercase sm:px-8 lg:bg-transparent lg:py-0 lg:pl-[6vw] lg:text-[3vw]">
+          <p className="comparison-impact bg-block px-5 pt-10 pb-[max(var(--space-block),96px)] font-display text-[11vw] leading-[0.92] font-bold text-on-block uppercase sm:px-8 lg:bg-transparent lg:py-0 lg:pl-[6vw] lg:text-[3vw]">
             {comparison.closingImpact}
           </p>
         </div>

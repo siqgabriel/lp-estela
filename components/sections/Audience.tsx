@@ -1,5 +1,6 @@
 import { audienceQualifiers, s12 } from "@/lib/content";
 import { GUTTER, IMPACT } from "@/components/system/type";
+import { FrameLabel } from "@/components/system/refine";
 
 /**
  * Seção 12 — página cheia branca, respiro. Título e introdução à esquerda; os itens à
@@ -7,8 +8,9 @@ import { GUTTER, IMPACT } from "@/components/system/type";
  */
 export function Audience() {
   return (
-    <section data-section="12" className="bg-field text-strong">
-      <div className={`${GUTTER} grid gap-12 py-20 lg:grid-cols-12 lg:gap-[3vw] lg:py-[8vw]`}>
+    <section data-section="12" className="relative bg-field text-strong">
+      <FrameLabel className="top-7 right-5 text-accent sm:right-8 lg:right-[4vw]">MAIORES DE 18 ANOS · TEATRO E/OU AUDIOVISUAL</FrameLabel>
+      <div className={`${GUTTER} grid gap-12 pad-section lg:grid-cols-12 lg:gap-[3vw]`}>
         <div className="lg:col-span-5">
           <h2 className={IMPACT}>{s12.impact}</h2>
           <p className="mt-8 max-w-[44ch] font-sans text-lg leading-relaxed font-medium lg:text-[19px]">{s12.intro}</p>

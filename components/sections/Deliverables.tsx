@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { bonuses, deliverables, s13 } from "@/lib/content";
-import { GUTTER, LEAD, MONUMENTAL, Title } from "@/components/system/type";
+import { GUTTER, LEAD, Title } from "@/components/system/type";
 
 /**
- * Seção 13 — sem eixo. Entregas como linhas tipográficas (sem cards); "+150" é a única
- * palavra monumental da seção. Bônus em dois blocos ink soltos; a capa do e-book
+ * Seção 13 — sem eixo. Entregas como linhas tipográficas (sem cards); "+150" em escala de
+ * impacto (a palavra monumental fica para a seção 14). Bônus em dois blocos ink soltos; a capa do e-book
  * (provisória, renderizada do PDF da Estela) encosta no bloco do bônus 1.
  */
 export function Deliverables() {
   return (
     <section data-section="13" className="bg-field text-strong">
-      <div className={`${GUTTER} py-20 lg:py-[8vw]`}>
+      <div className={`${GUTTER} pad-section`}>
         <Title lead={s13.lead} impact={s13.impact} leadClass="text-accent" />
 
         <dl className="mt-12 lg:mt-[4vw]">
@@ -21,7 +21,7 @@ export function Deliverables() {
                 <dt className="lg:col-span-7">
                   {monumental ? (
                     <>
-                      <span className={`${MONUMENTAL} inline text-[24vw] lg:text-[11vw]`}>+150</span>{" "}
+                      <span className="inline font-display text-[clamp(56px,7vw,110px)] leading-none font-bold">+150</span>{" "}
                       <span className={`${LEAD} inline text-accent`}>{d.label.replace("+150 ", "")}</span>
                     </>
                   ) : (
