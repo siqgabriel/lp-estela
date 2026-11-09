@@ -8,6 +8,8 @@ Diretrizes operacionais de implementação (motion, preloader, cursor trail, ace
 
 A primeira versão em Next.js existe e está publicada em https://lp-estela.vercel.app/. Ela foi auditada em 2026-11-06 e a nova direção de arte (Eixo de Corte) foi aprovada em 2026-11-09. A reformulação reaproveita o projeto atual: não recriar o app nem reinstalar dependências.
 
+**Dependências: nunca rodar `npm ci` nem `npm install` sem antes perguntar ao cliente se o `npm run dev` está rodando.** Com o servidor ativo, o npm não consegue apagar binários travados (lightningcss, oxide) e deixa o `node_modules` incompleto. Build e testes rodam em `.next-test` (`NEXT_DIST_DIR`), para não disputar a `.next` do servidor.
+
 **Stack (versões do `package-lock.json`)**: Next 15.5.29 (App Router) · React 19.3.1 · TypeScript 5.9.3 · Tailwind CSS 4.3.4 (`@tailwindcss/postcss`) · GSAP 3.15.1 (ScrollTrigger e SplitText inclusos) · Lenis 1.3.27 · ESLint 9.39.5 + eslint-config-next 15.5.29. Dependência nova autorizada: apenas `@playwright/test` (dev). Qualquer outra precisa de aprovação.
 
 **Fluxo de trabalho aprovado** — cada etapa só começa depois da aprovação da anterior:
@@ -53,12 +55,12 @@ Proibido: quarta cor de destaque, duotone ou filtro roxo em fotos, `mix-blend-mo
 
 | Família | Pesos | Carregamento | Papel |
 |---|---|---|---|
-| Bebas Neue (família 2014: Regular e Bold) | Regular, Bold | `next/font/local`, arquivos `.woff2` versionados | Títulos: Regular na linha de entrada, Bold no impacto e nas palavras monumentais |
+| Bebas Neue (família 2014 da Fontfabric: Regular e Bold) | Regular (400), Bold (700) | `next/font/local`, arquivos em `app/fonts/bebas-neue/` | Títulos: Regular na linha de entrada, Bold no impacto e nas palavras monumentais |
 | Barlow | 300–800 | `next/font/google` | Corpo (400/500, fecho em 700), subtítulos e chamadas raras (300/800) |
 | Inter | 500–600 | `next/font/google` | Botões, FAQ, legal, nome em citações |
 
-- A Bebas Neue do Google tem um único peso, que equivale ao Bold dos materiais (medido: traço de 0,110 em; o Regular dos materiais mede 0,078 em). Por isso, as duas Bebas vêm de arquivo local.
-- **Antes de versionar os `.woff2` da Bebas, conferir o arquivo de licença que acompanha a fonte** (esperado: SIL OFL) e versionar a licença junto. Se o Bold não estiver coberto, usar o Bebas Neue do Google (OFL) como Bold e registrar aqui.
+- A Bebas Neue do Google tem um único peso, que equivale ao Bold dos materiais. As duas Bebas vêm de arquivo local, e o traço medido bate com os materiais: Regular 0,078 em, Bold 0,110 em.
+- **Licença verificada em 2026-11-09**: SIL Open Font License 1.1, declarada nos metadados (tabela `name`, ID 13) de cada peso, Regular e Bold inclusive. Arquivos v1.003 baixados de fontfabric.com (distribuidora oficial da família de 2014, segundo o README da Dharma Type); texto da OFL copiado do repositório oficial `dharmatype/Bebas-Neue`. Procedência, hashes e fontes em `app/fonts/bebas-neue/SOURCE.md`. O zip oficial da Fontfabric exige e-mail e não foi baixado.
 - Escala: Regular de entrada 4–8 vw; Bold de impacto 8–12 vw; uma palavra monumental por seção de destaque, quase de borda a borda; corpo 17–19 px, até 68 caracteres por linha.
 
 ## Cores e tokens
@@ -91,6 +93,7 @@ Estrutura (servida pelo site, tudo em `public/` vai para o ar):
 - **Manifesto `lib/photos.ts`**: cada foto tem `src`, dimensões, `alt`, `tone: "bw" | "color"`, `rights` (`"liberada"` ou `"aguardando-aprovacao"`), `approval` (quem aprovou e quando, ou pendente) e créditos quando houver. Nenhum arquivo é convertido para P&B: o P&B é aplicado por CSS (`filter: grayscale()`) em um único componente, a partir do `tone`. **Padrão provisório: `tone: "bw"` para todas as fotos, inclusive as da Estela.** A decisão final de cor é do cliente e só acontece depois do layout pronto; trocar deve exigir só editar o manifesto.
 - **Foto dentro da letra**: no máximo 3 palavras na página inteira. Nunca em títulos longos, listas ou botões. A foto precisa manter pelo menos 3:1 sobre o branco. Fallback em `type-strong` sólido (`@supports`, `forced-colors`).
 - **PORTAS (seção 9)**: uma única foto preenchendo a palavra inteira, sem pin.
+- **Fotos em letra escolhidas** (medição com a Bebas Bold real, 2026-11-09): CLAREZA = `ft8` (3,9% da letra abaixo de 3:1 em tela 2x); SEU = `ft2` (7%); PORTAS = `ft11` **provisória** (7,6%, mas mostra só tecido) — falta uma foto adequada. Em PORTAS e SEU, priorizar fotos que não aparecem nos carrosséis da Estela (aparecem: ft1, ft3, ft6, ft7, ft8, ft9). Nas demais seções a repetição é aceita.
 
 ## Pin de scroll
 
@@ -124,7 +127,9 @@ Centralizadas em `lib/site-config.ts`, com placeholders explícitos. O build emi
 - vídeo de vendas (seção 1) e os 4 vídeos de depoimento (seção 11)
 - dados legais do rodapé (CNPJ, termos, privacidade)
 
-Também a receber: aprovação das fotos da Estela, logos em SVG (inclusive a versão clara do GC), capa do e-book "Passo a Passo" (seção 13), fotos de bastidores (seção 10) e fotos de Kécia Prado e Lira. Onde faltar material, sinalizar na página em desenvolvimento e no relatório da etapa.
+Provisório aceito: **header branco também no tema escuro**, até chegar o SVG claro do logo GC; quando chegar, o header passa a seguir o tema.
+
+Também a receber: foto para PORTAS (seção 9), aprovação das fotos da Estela, logos em SVG (inclusive a versão clara do GC), capa do e-book "Passo a Passo" (seção 13), fotos de bastidores (seção 10) e fotos de Kécia Prado e Lira. Onde faltar material, sinalizar na página em desenvolvimento e no relatório da etapa.
 
 ## Estrutura de pastas
 

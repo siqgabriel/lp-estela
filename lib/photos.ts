@@ -23,8 +23,10 @@ export type Photo = {
   /** Quem liberou e quando; null enquanto pendente. */
   approval: { by: string; date: string } | null;
   credit?: string;
-  /** Uso proposto na avaliação de 2026-11-09 (ver relatório da etapa 3). */
+  /** Uso proposto (avaliação de 2026-11-09, refeita com a ft8 nova e a Bebas Bold real). */
   proposedUse?: string;
+  /** Aparece nos carrosséis da Estela (evitar em PORTAS e SEU). */
+  inCarousels?: boolean;
 };
 
 const conceptual = (
@@ -33,6 +35,7 @@ const conceptual = (
   height: number,
   alt: string,
   proposedUse?: string,
+  inCarousels = false,
 ): Photo => ({
   id: `conceptual-ft${n}`,
   src: `/img/photo/conceptual/ft${n}.png`,
@@ -43,20 +46,21 @@ const conceptual = (
   rights: "liberada",
   approval: { by: "cliente (Operion)", date: "2026-11-09" },
   proposedUse,
+  inCarousels,
 });
 
 export const photos = {
-  ft1: conceptual(1, 660, 1197, "Atriz em fundo escuro, olhos fechados, com as mãos na cabeça.", "Reserva; só em tamanho pequeno"),
-  ft2: conceptual(2, 1555, 888, "Atriz de costas no palco, olhando para a plateia vazia sob os refletores.", "PORTAS (seção 9), foto em letra"),
-  ft3: conceptual(3, 727, 1330, "Atriz se maquiando nos bastidores, olhando para cima.", "Reserva para a seção 10 até chegarem as fotos de bastidores"),
+  ft1: conceptual(1, 660, 1197, "Atriz em fundo escuro, olhos fechados, com as mãos na cabeça.", "Reserva; só em tamanho pequeno", true),
+  ft2: conceptual(2, 1555, 888, "Atriz de costas no palco, olhando para a plateia vazia sob os refletores.", "SEU (seção 17), foto em letra, deslocamento ~55%"),
+  ft3: conceptual(3, 727, 1330, "Atriz se maquiando nos bastidores, olhando para cima.", "Reserva para a seção 10 até chegarem as fotos de bastidores", true),
   ft4: conceptual(4, 2217, 1475, "Câmera de ação montada em tripé, com a imagem do set no visor.", "Seção 10"),
   ft5: conceptual(5, 1112, 638, "Pessoa saltando entre dois muros contra o céu claro.", "Seção 5"),
-  ft6: conceptual(6, 1831, 1208, "Atriz com maquiagem cênica e galhos enrolados no corpo, gritando com as mãos na cabeça.", "Seção 3"),
-  ft7: conceptual(7, 943, 1067, "Monitor de câmera em um set escuro, mostrando um ator em cena.", "SEU (seção 17), foto em letra"),
-  ft8: conceptual(8, 722, 939, "Rosto de um homem visto através de um vidro com gotas de chuva.", "CLAREZA (seção 4), foto em letra; resolução baixa"),
-  ft9: conceptual(9, 1255, 928, "Mulher de costas erguendo o braço, com uma pessoa desfocada ao fundo.", "Seção 6"),
+  ft6: conceptual(6, 1831, 1208, "Atriz com maquiagem cênica e galhos enrolados no corpo, gritando com as mãos na cabeça.", "Seção 3", true),
+  ft7: conceptual(7, 943, 1067, "Monitor de câmera em um set escuro, mostrando um ator em cena.", "Alternativa para a seção 10", true),
+  ft8: conceptual(8, 2006, 2609, "Rosto de um homem visto através de um vidro com gotas de chuva.", "CLAREZA (seção 4), foto em letra, deslocamento ~50%", true),
+  ft9: conceptual(9, 1255, 928, "Mulher de costas erguendo o braço, com uma pessoa desfocada ao fundo.", "Seção 6", true),
   ft10: conceptual(10, 1752, 1674, "Pessoa sentada sozinha num banco no alto de uma colina, contra o céu.", "Alternativa para a seção 5"),
-  ft11: conceptual(11, 1066, 1747, "Mulher de perfil, pensativa, com a mão no queixo diante de uma janela clara.", "Seção 8, em tamanho pequeno"),
+  ft11: conceptual(11, 1066, 1747, "Mulher de perfil, pensativa, com a mão no queixo diante de uma janela clara.", "PORTAS (seção 9), provisória: legível, mas mostra só tecido; falta foto adequada"),
 } satisfies Record<string, Photo>;
 
 /**
