@@ -156,12 +156,8 @@ export const deliverables = [
 
 export const bonuses = [
   {
-    title: "Bônus 1 — E-book Passo a Passo para a Carreira de Ator",
+    title: "Bônus — E-book Passo a Passo para a Carreira de Ator",
     desc: "Um material de apoio pra consultar sempre que precisar, transformando o que você aprendeu nos módulos em próximos passos mais claros pra sua carreira.",
-  },
-  {
-    title: "Bônus 2 — Contato dos principais Diretores de Elenco",
-    desc: "Uma referência prática pra você já começar a se relacionar com quem decide no mercado de elenco — sem precisar descobrir isso tudo sozinho, do zero.",
   },
 ] as const;
 
@@ -187,8 +183,8 @@ export const faqItems = [
     a: "Você tem 7 dias de garantia incondicional. Reembolso integral, sem perguntas.",
   },
   {
-    q: "Como recebo os bônus?",
-    a: "Os dois já fazem parte da oferta: o e-book Passo a Passo para a Carreira de Ator e o contato dos principais Diretores de Elenco.",
+    q: "Como recebo o bônus?",
+    a: "Ele já faz parte da oferta: o e-book Passo a Passo para a Carreira de Ator.",
   },
 ] as const;
 
@@ -302,6 +298,9 @@ export const s8 = {
   lead: "O CAMINHO DE QUEM DEIXA DE ESPERAR",
   impact: "E COMEÇA A CONDUZIR.",
   intro: "O Gestão de Carreira reúne 12 módulos — não como uma lista de aulas soltas, mas como um percurso.",
+  /** Texto fora do PDF, aprovado pela Estela em 2026-11-23 (exceção registrada no CLAUDE.md). */
+  contentLead: "CONHEÇA O",
+  contentImpact: "CONTEÚDO",
 } as const;
 
 export const s9 = {
@@ -344,7 +343,7 @@ export const s12 = {
 export const s13 = {
   lead: "TUDO QUE VAI ESTAR",
   impact: "NAS SUAS MÃOS.",
-  bonusIntro: "E ainda tem 2 bônus:",
+  bonusIntro: "E ainda tem um bônus:",
 } as const;
 
 export const s14 = {
@@ -365,7 +364,7 @@ export const s15 = {
   price: "R$ 442",
   cashLabel: "à vista",
   installments: "(ou R$ 497 em 12x)",
-  included: "Os 12 módulos, mais de 150 aulas, 1 ano de acesso, suporte e os 2 bônus que você acabou de conhecer — tudo incluso.",
+  included: "Os 12 módulos, mais de 150 aulas, 1 ano de acesso, suporte e o bônus que você acabou de conhecer — tudo incluso.",
   cta: "QUERO ENTRAR NO GESTÃO DE CARREIRA",
 } as const;
 

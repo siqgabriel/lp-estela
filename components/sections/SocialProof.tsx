@@ -10,7 +10,7 @@ import { FrameLabel } from "@/components/system/refine";
 export function SocialProof() {
   return (
     <section data-section="11" className="relative bg-ink-band-deep text-paper">
-      <FrameLabel className="top-7 right-5 text-right text-lilac sm:right-8 lg:right-[4vw]">
+      <FrameLabel className="top-7 right-5 left-5 text-right text-lilac sm:right-8 sm:left-8 lg:right-[4vw] lg:left-auto">
         JULIA MARQUES · SAMUEL GIACOMELLI · ILCA ANGELA · CAROLINA VILELA
       </FrameLabel>
       <div className={`${GUTTER} pad-section`}>

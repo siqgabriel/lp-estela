@@ -12,7 +12,7 @@ export function CostOfFitting() {
   return (
     <section data-section="3" className="bg-ink-band text-paper">
       <div className={`${GUTTER} pad-section grid gap-14 lg:grid-cols-12 lg:gap-[3vw]`}>
-        <Gallery photos={[photos.ft6, photos.ft11, photos.ft1]} tone="dark" className="lg:col-span-6" />
+        <Gallery photos={[photos.ft6, photos.ft11, photos.ft1]} positions={["50% 22%", "50% 30%", "50% 35%"]} tone="dark" className="lg:col-span-6" />
         <div className="lg:col-span-5 lg:col-start-8 lg:pt-[6vw]">
           <h2>
             <span className={`${LEAD} text-lilac`}>{s3.lead}</span>

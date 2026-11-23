@@ -38,7 +38,10 @@ test("foto em letra: ft8 otimizada pelo Next, P&B pelo manifesto", async ({ page
   await ready(page);
   const word = page.locator("#clareza .photo-word");
   await expect(word).toHaveAttribute("data-photo", "conceptual-ft8");
-  await expect(word).toHaveClass(/grayscale/);
+  // P&B no elemento envolvente (filter + background-clip:text quebra no Safari)
+  await expect(word.locator("xpath=..")).toHaveClass(/grayscale/);
+  // letra transparente só depois que a imagem carrega
+  await expect(word).toHaveClass(/is-loaded/);
   const bg = await word.evaluate((el) => getComputedStyle(el).backgroundImage);
   expect(bg).toContain("/_next/image");
   expect(bg).toContain("ft8.png");
@@ -46,6 +49,17 @@ test("foto em letra: ft8 otimizada pelo Next, P&B pelo manifesto", async ({ page
   await page.evaluate(() => document.documentElement.setAttribute("data-theme", "dark"));
   const bgColor = await page.locator("#clareza").evaluate((el) => getComputedStyle(el).backgroundColor);
   expect(bgColor).toBe("rgb(255, 255, 255)");
+});
+
+test("foto em letra: ink sólido quando a imagem falha", async ({ page }) => {
+  await page.route(/_next\/image.*ft(2|8|11|1)\.png/, (route) => route.abort());
+  await ready(page);
+  for (const id of ["conceptual-ft8", "conceptual-ft2"]) {
+    const word = page.locator(`.photo-word[data-photo="${id}"]`);
+    await expect(word).not.toHaveClass(/is-loaded/);
+    const fill = await word.evaluate((el) => getComputedStyle(el).webkitTextFillColor);
+    expect(fill).toBe("rgb(31, 21, 57)");
+  }
 });
 
 test("pins: seções 7 e 8, só no desktop", async ({ page }, info) => {

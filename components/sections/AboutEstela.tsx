@@ -5,7 +5,7 @@ import { s14 } from "@/lib/content";
 import { PhotoPlaceholder, photoToneClass } from "@/components/media/Photo";
 import { estelaPhotos } from "@/lib/photos";
 import { FrameLabel } from "@/components/system/refine";
-import { GUTTER, IMPACT, LEAD, MONUMENTAL, NUMERAL } from "@/components/system/type";
+import { GUTTER, IMPACT, LEAD_PAIR, MONUMENTAL, NUMERAL } from "@/components/system/type";
 
 /**
  * Foto da Estela: arquivo local em public/img/photo/estela/ (fora do git até a aprovação dela).
@@ -24,13 +24,13 @@ export function AboutEstela() {
   const fullName = `${s14.name[0]} ${s14.name[1]}`;
   return (
     <section data-section="14" className="relative isolate flex flex-col overflow-hidden bg-ink-band text-paper lg:block">
-      <FrameLabel className="top-7 left-5 z-30 text-lilac sm:left-8 lg:left-[4vw]">
+      <FrameLabel className="top-7 right-5 left-5 z-30 text-lilac sm:right-8 sm:left-8 lg:right-auto lg:left-[4vw]">
         25 ANOS · DIREÇÃO DE ELENCO · PRODUÇÃO CULTURAL · MENTORIA DE CARREIRA ARTÍSTICA
       </FrameLabel>
 
       <div className={`${GUTTER} relative order-1 pt-[var(--space-section)]`}>
         <h2>
-          <span className={`${LEAD} relative z-30 text-lilac`}>{s14.lead}</span>
+          <span className={`${LEAD_PAIR} relative z-30 mb-2 text-lilac`}>{s14.lead}</span>
           {/* Celular: nome em duas linhas */}
           <span className={`${IMPACT} lg:hidden`}>
             {s14.name[0]}

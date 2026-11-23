@@ -27,10 +27,13 @@ Em cada entrega, informar brevemente o que as skills `frontend-design`, `ui-ux-p
 
 - Nunca inventar, resumir, reordenar ou alterar textos, preços, módulos, bônus, condições, depoimentos ou a estratégia de persuasão. Tratamento visual (caixa alta da Bebas, quebras de linha, palavra partida) é permitido; mudar palavras ou pontuação não.
 - Sem rótulos ou sobretítulos inventados ("Prova social", "Oferta", "Quem é", "Quero entrar" etc.). CTAs usam exatamente os textos do PDF: QUERO GANHAR VISIBILIDADE · QUERO CONHECER O MÉTODO · QUERO ENTRAR NO GESTÃO DE CARREIRA · QUERO COMEÇAR AGORA.
-- Desvios da primeira versão a corrigir: incluir "E ainda tem 2 bônus:" (seção 13) e "É só chamar a gente no botão do WhatsApp aqui do lado." (seção 18); restaurar a seção 14 com o texto integral do PDF (sem linha do tempo, sem o rótulo "Hoje"); usar "bem por que" na tabela da seção 7, como no PDF.
+- Desvios da primeira versão a corrigir: incluir a frase de abertura dos bônus (seção 13; ver exceções abaixo) e "É só chamar a gente no botão do WhatsApp aqui do lado." (seção 18); restaurar a seção 14 com o texto integral do PDF (sem linha do tempo, sem o rótulo "Hoje"); usar "bem por que" na tabela da seção 7, como no PDF.
 - Termo oficial: "Diretores de Elenco" (não "diretores de casting").
-- Oferta: **R$ 442 à vista (ou R$ 497 em 12x)** — 12 módulos, +150 aulas gravadas com PDFs de apoio, 1 ano de acesso, suporte via chat da plataforma, 2 bônus (e-book "Passo a Passo para a Carreira de Ator" e contato dos principais Diretores de Elenco), garantia incondicional de 7 dias com reembolso integral. Não prometer testes, convites ou trabalhos.
+- Oferta: **R$ 442 à vista (ou R$ 497 em 12x)** — 12 módulos, +150 aulas gravadas com PDFs de apoio, 1 ano de acesso, suporte via chat da plataforma, 1 bônus (e-book "Passo a Passo para a Carreira de Ator"), garantia incondicional de 7 dias com reembolso integral. Não prometer testes, convites ou trabalhos.
 - Depoimentos (Kécia Prado, Lira) e vídeos (Julia Marques, Samuel Giacomelli, Ilca Angela, Carolina Vilela) são pessoas reais: citação literal, sem paráfrase.
+- **Exceções aprovadas pela Estela (2026-11-23)**, que prevalecem sobre o PDF:
+  - Título novo na seção 8, entre o CTA e a lista de módulos: "CONHEÇA O CONTEÚDO" (em dois pesos).
+  - Bônus "Contato dos principais Diretores de Elenco" removido. Textos ajustados para o singular: "E ainda tem um bônus:" (seção 13); "…suporte e o bônus que você acabou de conhecer — tudo incluso." (seção 15); FAQ "Como recebo o bônus?" / "Ele já faz parte da oferta: o e-book Passo a Passo para a Carreira de Ator."; rótulo do bônus sem número ("Bônus — E-book…").
 - Se uma seção precisar de texto de venda que não está no PDF, sinalizar em vez de criar. Microcopy funcional (alt, rótulos acessíveis, mensagens de erro) pode ser criada.
 
 ## Direção de arte aprovada: Eixo de Corte

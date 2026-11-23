@@ -27,7 +27,7 @@ export function Hero() {
       </FrameLabel>
 
       <h1 className="font-display uppercase">
-        <span className="block px-5 pt-8 text-right text-[7.4vw] leading-[0.95] font-normal text-accent sm:px-8 lg:w-[64%] lg:pt-[6vw] lg:pr-[2vw] lg:text-[2.9vw]">
+        <span className="block px-5 pt-8 text-right text-[7.4vw] leading-[0.95] font-normal text-accent sm:px-8 lg:w-[64%] lg:pt-[5.4vw] lg:pr-[2vw] lg:text-[4vw]">
           {hero.lead}
         </span>
 

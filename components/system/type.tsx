@@ -8,6 +8,8 @@
 
 export const LEAD = "block font-display font-normal uppercase leading-[0.95] text-[clamp(26px,3vw,46px)]";
 export const IMPACT = "block font-display font-bold uppercase leading-[0.92] text-[clamp(44px,6.6vw,104px)]";
+/** Linha de entrada que forma título único com uma palavra monumental (seções 6, 9, 14, 17). */
+export const LEAD_PAIR = "block font-display font-normal uppercase leading-[0.95] text-[clamp(34px,9.6vw,48px)] lg:text-[clamp(44px,5.2vw,86px)]";
 export const MONUMENTAL = "block font-display font-bold uppercase leading-[0.86] text-[clamp(76px,14vw,206px)]";
 export const NUMERAL = "font-display font-bold leading-[0.85] text-[clamp(44px,4.6vw,72px)]";
 

@@ -21,7 +21,7 @@ export function MarketClarity() {
           word={marketClarity.word}
           photo={photos.ft8}
           position="50% 50%"
-          className={`clareza-word ${MONUMENTAL} text-[30vw] lg:text-[14vw]`}
+          className={`clareza-word ${MONUMENTAL} text-[30vw]! lg:text-[14vw]!`}
         />
       </h2>
 

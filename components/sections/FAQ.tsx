@@ -9,7 +9,7 @@ import { FrameLabel } from "@/components/system/refine";
 export function FAQ() {
   return (
     <section data-section="19" className="relative bg-field text-strong">
-      <FrameLabel className="top-7 right-5 text-accent sm:right-8 lg:right-[4vw]">100% ONLINE · 1 ANO DE ACESSO · ATÉ 12X</FrameLabel>
+      <FrameLabel className="top-7 right-5 left-5 text-accent sm:right-8 sm:left-8 lg:right-[4vw] lg:left-auto">100% ONLINE · 1 ANO DE ACESSO · ATÉ 12X</FrameLabel>
       <div className={`${GUTTER} grid gap-10 pad-section lg:grid-cols-12 lg:gap-[3vw]`}>
         <Title
           lead={s19.lead}

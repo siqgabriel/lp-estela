@@ -12,14 +12,14 @@ export function Offer() {
   const checkout = siteConfig.checkoutUrl;
   return (
     <section id="oferta" data-section="15" className="relative isolate grid bg-field text-strong lg:grid-cols-[58%_1fr]">
-      <FrameLabel className="top-7 left-5 text-accent sm:left-8 lg:left-[4vw]">12 MÓDULOS · 1 ANO DE ACESSO · 7 DIAS DE GARANTIA</FrameLabel>
+      <FrameLabel className="top-7 right-5 left-5 text-accent sm:right-8 sm:left-8 lg:right-auto lg:left-[4vw]">12 MÓDULOS · 1 ANO DE ACESSO · 7 DIAS DE GARANTIA</FrameLabel>
       <div className={`${GUTTER} pt-[var(--space-section)] pb-10 lg:pb-[var(--space-section)]`}>
         <h2>
           <span className={`${LEAD} text-accent`}>{s15.lead}</span>
           <span className={`${IMPACT} mt-1`}>{s15.product}</span>
         </h2>
         <p className="mt-8 flex flex-wrap items-baseline gap-x-5">
-          <span className={`${MONUMENTAL} text-[30vw] lg:text-[14vw]`}>{s15.price}</span>
+          <span className={`${MONUMENTAL} text-[30vw]! lg:text-[14vw]!`}>{s15.price}</span>
           <span className={`${LEAD} text-accent`}>{s15.cashLabel}</span>
         </p>
       </div>

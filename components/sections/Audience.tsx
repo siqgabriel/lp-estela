@@ -9,7 +9,7 @@ import { FrameLabel } from "@/components/system/refine";
 export function Audience() {
   return (
     <section data-section="12" className="relative bg-field text-strong">
-      <FrameLabel className="top-7 right-5 text-accent sm:right-8 lg:right-[4vw]">MAIORES DE 18 ANOS · TEATRO E/OU AUDIOVISUAL</FrameLabel>
+      <FrameLabel className="top-7 right-5 left-5 text-accent sm:right-8 sm:left-8 lg:right-[4vw] lg:left-auto">MAIORES DE 18 ANOS · TEATRO E/OU AUDIOVISUAL</FrameLabel>
       <div className={`${GUTTER} grid gap-12 pad-section lg:grid-cols-12 lg:gap-[3vw]`}>
         <div className="lg:col-span-5">
           <h2 className={IMPACT}>{s12.impact}</h2>

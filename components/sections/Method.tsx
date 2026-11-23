@@ -13,7 +13,7 @@ export function Method() {
   let n = 0;
   return (
     <section id="metodo" data-section="8" className="relative bg-ink-band text-paper">
-      <FrameLabel className="top-7 right-5 text-lilac sm:right-8 lg:right-[4vw]">
+      <FrameLabel className="top-7 right-5 left-5 text-lilac sm:right-8 sm:left-8 lg:right-[4vw] lg:left-auto">
         12 MÓDULOS · +150 AULAS GRAVADAS · MATERIAL DE APOIO EM PDF
       </FrameLabel>
       <div className="pad-section">
@@ -26,7 +26,9 @@ export function Method() {
           </Cta>
         </div>
 
-        <ol className="stack grid gap-4 lg:col-span-7">
+        <div className="lg:col-span-7">
+          <Title lead={s8.contentLead} impact={s8.contentImpact} as="h3" className="mb-8 lg:mb-[2vw]" leadClass="text-lilac" impactClass="text-[clamp(40px,4.4vw,72px)]" />
+        <ol className="stack grid gap-4">
           {moduleGroups.map((group, gi) => {
             const light = gi % 2 === 0;
             return (
@@ -63,6 +65,7 @@ export function Method() {
             );
           })}
         </ol>
+        </div>
       </div>
       </div>
       <MethodStack />

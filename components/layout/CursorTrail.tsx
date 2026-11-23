@@ -6,8 +6,11 @@ type TrailPoint = { x: number; y: number; t: number };
 type Ripple = { x: number; y: number; r: number; a: number; dark: boolean };
 
 /** Vida de cada ponto do rastro (s): rastro curto, como no Davies. */
-const LIFE = 0.22;
-const MAX_POINTS = 14;
+const LIFE = 0.16;
+/** Últimos pontos, como no Davies (~10). */
+const MAX_POINTS = 10;
+/** Comprimento máximo do rastro (px): movimentos rápidos não viram um arco longo. */
+const MAX_LENGTH = 140;
 const WIDTH = 2.4;
 const INK = "31, 21, 57";
 const WHITE = "255, 255, 255";
@@ -131,6 +134,15 @@ export function CursorTrail() {
       }
       points.push({ x: event.clientX, y: event.clientY, t: now / 1000 });
       if (points.length > MAX_POINTS) points.shift();
+      // Corta a cauda até o rastro caber em MAX_LENGTH.
+      let length = 0;
+      for (let i = points.length - 1; i > 0; i--) {
+        length += Math.hypot(points[i].x - points[i - 1].x, points[i].y - points[i - 1].y);
+        if (length > MAX_LENGTH) {
+          points.splice(0, i);
+          break;
+        }
+      }
       start();
     };
 
