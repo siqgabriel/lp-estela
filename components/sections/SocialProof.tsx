@@ -2,6 +2,7 @@ import { s11, testimonials, testimonialVideoNames } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 import { GUTTER, Title } from "@/components/system/type";
 import { FrameLabel } from "@/components/system/refine";
+import { TestimonialVideo } from "./TestimonialVideo";
 
 /**
  * Seção 11 — página cheia ink, só tipográfica (sem foto de banco perto das citações).
@@ -11,7 +12,7 @@ export function SocialProof() {
   return (
     <section data-section="11" className="relative bg-ink-band-deep text-paper">
       <FrameLabel className="top-7 right-5 left-5 text-right text-lilac sm:right-8 sm:left-8 lg:right-[4vw] lg:left-auto">
-        JULIA MARQUES · SAMUEL GIACOMELLI · ILCA ANGELA · CAROLINA VILELA
+        JULIA MARQUES · SAMUEL GIACOMELLI · DANILO ANASTÁCIO · ILCA ANGELA · CAROLINA VILELA
       </FrameLabel>
       <div className={`${GUTTER} pad-section`}>
         <Title lead={s11.lead} impact={s11.impact} leadClass="text-lilac" />
@@ -32,19 +33,24 @@ export function SocialProof() {
           ))}
         </div>
 
-        <ul className="mt-16 grid grid-cols-2 gap-3 lg:mt-[6vw] lg:ml-auto lg:w-[58%] lg:grid-cols-4 lg:gap-[1vw]">
-          {testimonialVideoNames.map((name) => {
-            const src = siteConfig.videos.testimonials[name];
+        {/* Desktop: 5 colunas na largura útil. Celular: o primeiro ocupa a linha e os outros formam 2 × 2. */}
+        <ul className="mt-16 grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-3 lg:mt-[6vw] lg:grid-cols-5 lg:gap-x-[1.2vw]">
+          {testimonialVideoNames.map((name, i) => {
+            const video = siteConfig.videos.testimonials[name];
             return (
-              <li key={name} className="flex aspect-[9/16] flex-col justify-end bg-ink-band p-4 ring-1 ring-paper/25">
-                {src ? (
-                  <iframe src={src} title={`Depoimento de ${name}`} className="h-full w-full" allow="fullscreen" />
+              <li key={name} className={i === 0 ? "col-span-2 sm:col-span-1" : ""}>
+                {video ? (
+                  <div data-cursor="video" className="aspect-[9/16] bg-ink-band">
+                    <TestimonialVideo name={name} src={video.src} poster={video.poster} />
+                  </div>
                 ) : (
-                  <span className="font-ui text-xs text-lilac" data-pending="video-depoimento">
-                    [Pendente: vídeo]
-                  </span>
+                  <div className="flex aspect-[9/16] items-end bg-ink-band p-4 ring-1 ring-paper/25 ring-inset">
+                    <span className="font-ui text-xs text-lilac" data-pending="video-depoimento">
+                      [Pendente: vídeo]
+                    </span>
+                  </div>
                 )}
-                <span className="mt-2 font-display text-[clamp(22px,1.7vw,28px)] leading-none font-bold uppercase">{name}</span>
+                <p className="mt-3 font-display text-[clamp(22px,1.7vw,28px)] leading-none font-bold uppercase">{name}</p>
               </li>
             );
           })}

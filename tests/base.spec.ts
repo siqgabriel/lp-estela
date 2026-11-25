@@ -234,4 +234,34 @@ test("pendências visíveis, nunca valores falsos", async ({ page }) => {
   await expect(page.locator('a[href*="wa.me/55X"]')).toHaveCount(0);
   await expect(page.locator('[data-pending="checkout"]')).toBeVisible();
   await expect(page.locator('[data-pending="whatsapp"]')).toHaveCount(1);
+  await expect(page.locator('[data-pending="video-vendas"]')).toHaveCount(0);
+  await expect(page.locator('[data-pending="video-depoimento"]')).toHaveCount(2);
+});
+
+test("vídeos: embed de vendas e depoimentos que pausam uns aos outros", async ({ page, request }) => {
+  await page.goto("/");
+  await waitPreloaderGone(page);
+  const sales = page.locator("#hero iframe");
+  await expect(sales).toHaveAttribute("src", /youtube-nocookie\.com\/embed\/c3-SoHH4loM/);
+  await expect(sales).toHaveAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+
+  const videos = page.locator('[data-section="11"] video');
+  await expect(videos).toHaveCount(3);
+  for (const video of await videos.all()) {
+    await expect(video).toHaveAttribute("preload", "none");
+    for (const attr of ["src", "poster"]) {
+      const res = await request.head((await video.getAttribute(attr))!);
+      expect(res.status()).toBe(200);
+    }
+  }
+  const paused = () => videos.evaluateAll((els) => els.map((el) => (el as HTMLVideoElement).paused));
+  for (const i of [0, 1]) {
+    await videos.nth(i).evaluate((el) => {
+      const v = el as HTMLVideoElement;
+      v.muted = true;
+      v.play().catch(() => {});
+    });
+    await expect.poll(async () => (await paused()).filter((p) => !p).length).toBe(1);
+    expect((await paused())[i]).toBe(false);
+  }
 });

@@ -5,6 +5,8 @@
  * placeholder explícito. `next.config.ts` lista os itens pendentes no build.
  */
 
+export type TestimonialVideoFiles = { src: string; poster: string };
+
 export const siteConfig = {
   url: "https://lp-estela.vercel.app",
   name: "Gestão de Carreira | Estela Albani",
@@ -23,13 +25,14 @@ export const siteConfig = {
 
   videos: {
     /** Vídeo de vendas da seção 1. */
-    sales: null as string | null,
-    /** Vídeos de depoimento da seção 11 (nomes do PDF). */
+    sales: "https://www.youtube-nocookie.com/embed/c3-SoHH4loM?rel=0&modestbranding=1&playsinline=1" as string | null,
+    /** Vídeos de depoimento da seção 11 (nomes do PDF, mais Danilo Anastácio; ver CLAUDE.md). */
     testimonials: {
-      "Julia Marques": null as string | null,
-      "Samuel Giacomelli": null as string | null,
-      "Ilca Angela": null as string | null,
-      "Carolina Vilela": null as string | null,
+      "Julia Marques": { src: "/video/julia-marques.mp4", poster: "/video/julia-marques.jpg" } as TestimonialVideoFiles | null,
+      "Samuel Giacomelli": { src: "/video/samuel-giacomelli.mp4", poster: "/video/samuel-giacomelli.jpg" } as TestimonialVideoFiles | null,
+      "Danilo Anastácio": { src: "/video/danilo-anastacio.mp4", poster: "/video/danilo-anastacio.jpg" } as TestimonialVideoFiles | null,
+      "Ilca Angela": null as TestimonialVideoFiles | null,
+      "Carolina Vilela": null as TestimonialVideoFiles | null,
     },
   },
 
@@ -52,8 +55,8 @@ export function pendingItems(): string[] {
   if (!siteConfig.checkoutUrl) items.push("link de checkout (seção 15)");
   if (!siteConfig.whatsappNumber) items.push("número do WhatsApp (seção 18)");
   if (!siteConfig.videos.sales) items.push("vídeo de vendas (seção 1)");
-  for (const [name, url] of Object.entries(siteConfig.videos.testimonials)) {
-    if (!url) items.push(`vídeo de depoimento: ${name} (seção 11)`);
+  for (const [name, video] of Object.entries(siteConfig.videos.testimonials)) {
+    if (!video) items.push(`vídeo de depoimento: ${name} (seção 11)`);
   }
   for (const [key, value] of Object.entries(siteConfig.legal)) {
     if (!value) items.push(`dado legal do rodapé: ${key}`);

@@ -29,6 +29,10 @@ next-env.d.ts
 /public/img/photo/estela/*
 !/public/img/photo/estela/.gitkeep
 
+# originais dos vídeos de depoimento (o site usa as versões com nome em slug)
+/public/video/DEP *
+/public/video/Capa *
+
 # playwright
 /test-results/
 /playwright-report/

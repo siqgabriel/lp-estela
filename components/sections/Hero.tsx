@@ -79,7 +79,15 @@ function SalesVideo() {
   if (src) {
     return (
       <div data-cursor="video" className="aspect-video w-full bg-black">
-        <iframe src={src} title="Vídeo de vendas" className="h-full w-full" allow="fullscreen; picture-in-picture" />
+        <iframe
+          src={src}
+          title="Vídeo de vendas — Gestão de Carreira"
+          className="h-full w-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          allowFullScreen
+          loading="lazy" /* não segura o load, que o preloader espera */
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
       </div>
     );
   }

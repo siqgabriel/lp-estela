@@ -30,10 +30,11 @@ Em cada entrega, informar brevemente o que as skills `frontend-design`, `ui-ux-p
 - Desvios da primeira versão a corrigir: incluir a frase de abertura dos bônus (seção 13; ver exceções abaixo) e "É só chamar a gente no botão do WhatsApp aqui do lado." (seção 18); restaurar a seção 14 com o texto integral do PDF (sem linha do tempo, sem o rótulo "Hoje"); usar "bem por que" na tabela da seção 7, como no PDF.
 - Termo oficial: "Diretores de Elenco" (não "diretores de casting").
 - Oferta: **R$ 442 à vista (ou R$ 497 em 12x)** — 12 módulos, +150 aulas gravadas com PDFs de apoio, 1 ano de acesso, suporte via chat da plataforma, 1 bônus (e-book "Passo a Passo para a Carreira de Ator"), garantia incondicional de 7 dias com reembolso integral. Não prometer testes, convites ou trabalhos.
-- Depoimentos (Kécia Prado, Lira) e vídeos (Julia Marques, Samuel Giacomelli, Ilca Angela, Carolina Vilela) são pessoas reais: citação literal, sem paráfrase.
+- Depoimentos (Kécia Prado, Lira) e vídeos (Julia Marques, Samuel Giacomelli, Danilo Anastácio, Ilca Angela, Carolina Vilela) são pessoas reais: citação literal, sem paráfrase.
 - **Exceções aprovadas pela Estela (2026-11-23)**, que prevalecem sobre o PDF:
   - Título novo na seção 8, entre o CTA e a lista de módulos: "CONHEÇA O CONTEÚDO" (em dois pesos).
   - Bônus "Contato dos principais Diretores de Elenco" removido. Textos ajustados para o singular: "E ainda tem um bônus:" (seção 13); "…suporte e o bônus que você acabou de conhecer — tudo incluso." (seção 15); FAQ "Como recebo o bônus?" / "Ele já faz parte da oferta: o e-book Passo a Passo para a Carreira de Ator."; rótulo do bônus sem número ("Bônus — E-book…").
+- **Exceção aprovada pelo Gabi (2026-11-25)**: Danilo Anastácio, que não está no PDF, entra na 3ª posição dos vídeos de depoimento (seção 11).
 - Se uma seção precisar de texto de venda que não está no PDF, sinalizar em vez de criar. Microcopy funcional (alt, rótulos acessíveis, mensagens de erro) pode ser criada.
 
 ## Direção de arte aprovada: Eixo de Corte
@@ -141,7 +142,7 @@ Centralizadas em `lib/site-config.ts`, com placeholders explícitos. O build emi
 
 - link de checkout (seção 15)
 - número do WhatsApp (seção 18 e botão flutuante)
-- vídeo de vendas (seção 1) e os 4 vídeos de depoimento (seção 11)
+- vídeos de depoimento (seção 11): 3 de 5 entregues; faltam Ilca Angela e Carolina Vilela (o vídeo de vendas da seção 1 foi entregue em 2026-11-25)
 - dados legais do rodapé (CNPJ, termos, privacidade)
 
 Provisório aceito: **header branco também no tema escuro**, até chegar o SVG claro do logo GC; quando chegar, o header passa a seguir o tema.

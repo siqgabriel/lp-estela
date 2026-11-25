@@ -133,6 +133,8 @@ export const testimonials = [
 export const testimonialVideoNames = [
   "Julia Marques",
   "Samuel Giacomelli",
+  /** Fora do PDF: exceção aprovada em 2026-11-25 (ver CLAUDE.md). */
+  "Danilo Anastácio",
   "Ilca Angela",
   "Carolina Vilela",
 ] as const;
